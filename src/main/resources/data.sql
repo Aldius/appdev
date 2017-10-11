@@ -1,0 +1,1 @@
+insert into USER values (0, 0, admin, admin, admin@admin.hu, 'ADMIN');
