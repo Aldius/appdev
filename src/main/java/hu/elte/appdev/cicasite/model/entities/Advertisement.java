@@ -1,7 +1,10 @@
 package hu.elte.appdev.cicasite.model.entities;
 
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -16,10 +19,9 @@ public class Advertisement extends BaseEntity {
 	@ManyToOne
 	private User advertiser;
 
-	private String photos;
+	private String picture_path;
 
-	@Enumerated(EnumType.STRING)
-	private Status status;
+	@Column(nullable = false) @Enumerated(EnumType.STRING) private Status status;
 
 	private String description;
 
