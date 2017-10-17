@@ -6,9 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +20,10 @@ public class Report extends BaseEntity {
 
 	@ManyToOne private User reported_by;
 
-	private String reason;
+	@Enumerated(EnumType.STRING)
+	private ReportReason reason;
 
+	public enum ReportReason{
+		REASON1, REASON2, REASON3
+	}
 }
