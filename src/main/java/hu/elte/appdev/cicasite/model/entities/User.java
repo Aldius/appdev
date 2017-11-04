@@ -1,14 +1,10 @@
 package hu.elte.appdev.cicasite.model.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -40,7 +36,9 @@ public class User extends BaseEntity {
 	@OneToMany(mappedBy = "from") private List<Message> messagesSent;
 
 	public enum Role {
-		ADMIN, REGISTERED, GUEST
+		ADMIN,
+		USER,
+		GUEST
 	}
 
 }
