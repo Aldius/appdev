@@ -1,12 +1,11 @@
 package hu.elte.appdev.cicasite.model.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.*;
+import lombok.*;
 
 import javax.persistence.*;
+import java.io.*;
 
 @Data
 @AllArgsConstructor
@@ -14,19 +13,31 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "ADS")
-public class Advertisement extends BaseEntity {
+public class Advertisement extends BaseEntity implements Serializable {
 
-	@ManyToOne
+	@JsonBackReference @ManyToOne(targetEntity = User.class)
 	private User advertiser;
 
+	@Column(nullable = false) private String title;
+
 	private String picture_path;
+
+	@Column(nullable = false, name = "ADTYPE") @Enumerated(EnumType.STRING) private AdType adType;
 
 	@Column(nullable = false) @Enumerated(EnumType.STRING) private Status status;
 
 	private String description;
 
+	public enum AdType {
+		FORSALE,
+		WOULDBUY,
+		LOST
+	}
+
 	public enum Status {
-		AVAILABLE, UNAVAILABLE
+		APPROVED,
+		WAITING,
+		DISAPPROVED
 	}
 
 }

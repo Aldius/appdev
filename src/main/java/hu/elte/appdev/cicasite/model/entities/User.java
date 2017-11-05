@@ -1,9 +1,11 @@
 package hu.elte.appdev.cicasite.model.entities;
 
 
+import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.*;
 import java.util.*;
 
 @Data
@@ -12,7 +14,7 @@ import java.util.*;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "USER")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Serializable {
 
 	@Column(nullable = false, unique = true)
 	private String username;
@@ -26,14 +28,13 @@ public class User extends BaseEntity {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	@OneToMany(mappedBy = "advertiser")
-	private Set<Advertisement> ads;
+	@JsonManagedReference @OneToMany(mappedBy = "advertiser") private Set<Advertisement> ads;
 
-	@OneToMany(mappedBy = "user") private Set<Report> reports;
+	@JsonManagedReference @OneToMany(mappedBy = "user") private Set<Report> reports;
 
-	@OneToMany(mappedBy = "user") private List<Message> messages;
+	@JsonManagedReference @OneToMany(mappedBy = "user") private List<Message> messages;
 
-	@OneToMany(mappedBy = "from") private List<Message> messagesSent;
+	@JsonManagedReference @OneToMany(mappedBy = "from") private List<Message> messagesSent;
 
 	public enum Role {
 		ADMIN,

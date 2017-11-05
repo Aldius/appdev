@@ -1,6 +1,6 @@
 package hu.elte.appdev.cicasite.model.entities;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
