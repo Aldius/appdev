@@ -16,7 +16,6 @@ import static hu.elte.appdev.cicasite.model.entities.User.Role.*;
 public class UserService {
 
 	private final UserRepository userRepository;
-
 	private User user;
 
 	@Autowired
@@ -27,6 +26,14 @@ public class UserService {
 			return this.user = userRepository.findByUsername(user.getUsername()).get();
 		}
 		throw new UserNotValidException();
+	}
+
+	public boolean logout(){
+		if(isLoggedIn()){
+			this.user = null;
+			return true;
+		}
+		return false;
 	}
 
 	private boolean isValid(User user) {

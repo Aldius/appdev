@@ -7,6 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -19,9 +20,13 @@ import javax.persistence.Table;
 @Table(name = "MESSAGES")
 public class Message extends BaseEntity {
 
-	@ManyToOne private User user;
+    @JoinColumn
+	@ManyToOne(targetEntity = User.class)
+    private User user;
 
-	@ManyToOne private User from;
+    @JoinColumn
+	@ManyToOne(targetEntity = User.class)
+    private User from;
 
 	private String message;
 

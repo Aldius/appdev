@@ -16,9 +16,11 @@ import javax.persistence.*;
 @Table(name = "REPORTS")
 public class Report extends BaseEntity {
 
-	@ManyToOne private User user;
+	@JoinColumn
+	@ManyToOne(targetEntity = User.class)
+	private User user;
 
-	@ManyToOne private User reported_by;
+	private User reported_by;
 
 	@Enumerated(EnumType.STRING)
 	private ReportReason reason;

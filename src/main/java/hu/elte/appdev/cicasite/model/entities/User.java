@@ -1,9 +1,7 @@
 package hu.elte.appdev.cicasite.model.entities;
 
 
-import com.fasterxml.jackson.annotation.*;
 import lombok.*;
-
 import javax.persistence.*;
 import java.io.*;
 import java.util.*;
@@ -14,7 +12,7 @@ import java.util.*;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "USER")
-public class User extends BaseEntity implements Serializable {
+public class User extends BaseEntity implements Serializable{
 
 	@Column(nullable = false, unique = true)
 	private String username;
@@ -28,13 +26,21 @@ public class User extends BaseEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
-	@JsonManagedReference @OneToMany(mappedBy = "advertiser") private Set<Advertisement> ads;
+    @JoinColumn
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Advertisement.class)
+    private List<Advertisement> ads;
 
-	@JsonManagedReference @OneToMany(mappedBy = "user") private Set<Report> reports;
+    @JoinColumn
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Report.class)
+    private List<Report> reports;
 
-	@JsonManagedReference @OneToMany(mappedBy = "user") private List<Message> messages;
+    @JoinColumn
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Message.class)
+    private List<Message> messages;
 
-	@JsonManagedReference @OneToMany(mappedBy = "from") private List<Message> messagesSent;
+    @JoinColumn
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Message.class)
+    private List<Message> messagesSent;
 
 	public enum Role {
 		ADMIN,

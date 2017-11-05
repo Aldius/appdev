@@ -28,12 +28,25 @@ public class AdApiController {
 
 	@GetMapping
 	public ResponseEntity<Iterable<Advertisement>> getAds() {
-		return ResponseEntity.ok(adService.getAds(userService.getUser()));
+		return ResponseEntity.ok(adService.getAds());
 	}
 
+	@Role({USER,ADMIN})
+	@GetMapping("/own")
+	public ResponseEntity<Iterable<Advertisement>> getUserAds() {
+		if(userService.isLoggedIn()) {
+			return ResponseEntity.ok(adService.getUserAds(userService.getUser()));
+		}
+		else
+		{
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
+	@Role({USER,ADMIN})
 	@GetMapping(params = {"adType"})
-	public ResponseEntity<Iterable<Advertisement>> getAdsByStatus(@RequestParam("adType") AdType adType) {
-		return ResponseEntity.ok(adService.getAds(adType, userService.getUser()));
+	public ResponseEntity<Iterable<Advertisement>> getUserAdsByStatus(@RequestParam("adType") AdType adType) {
+		return ResponseEntity.ok(adService.getUserAdsByType(adType, userService.getUser()));
 	}
 
 	@Role({USER, ADMIN})

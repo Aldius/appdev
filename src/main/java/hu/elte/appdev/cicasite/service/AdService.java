@@ -26,7 +26,13 @@ public class AdService {
 		return ad;
 	}
 
-	public Iterable<Advertisement> getAds(User user) {
+	public Iterable<Advertisement> getAds() {
+		Iterable<Advertisement> ads;
+		ads = adRepository.findByStatus(APPROVED);
+		return ads;
+	}
+
+	public Iterable<Advertisement> getUserAds(User user) {
 		Iterable<Advertisement> ads;
 		if (user.getRole().equals(ADMIN)) {
 			ads = adRepository.findAll();
@@ -37,7 +43,7 @@ public class AdService {
 		return ads;
 	}
 
-	public Iterable<Advertisement> getAds(AdType adType, User user) {
+	public Iterable<Advertisement> getUserAdsByType(AdType adType, User user) {
 		Iterable<Advertisement> ads;
 		if (user.getRole().equals(ADMIN)) {
 			ads = adRepository.findByAdType(adType);

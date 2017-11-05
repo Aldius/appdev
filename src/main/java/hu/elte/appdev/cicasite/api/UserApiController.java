@@ -40,10 +40,19 @@ public class UserApiController {
 		}
 	}
 
+	@PostMapping("/logout")
+	public ResponseEntity<User> logout()
+	{
+		if (userService.logout()){
+			return ResponseEntity.accepted().build();
+		} else
+		{
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 	@PostMapping("/register")
 	public ResponseEntity<User> register(@RequestBody User user) {
 		return ResponseEntity.ok(userService.register(user));
 	}
-
-
 }

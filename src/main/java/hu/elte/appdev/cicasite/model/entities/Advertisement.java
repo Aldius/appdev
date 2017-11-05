@@ -3,7 +3,6 @@ package hu.elte.appdev.cicasite.model.entities;
 
 import com.fasterxml.jackson.annotation.*;
 import lombok.*;
-
 import javax.persistence.*;
 import java.io.*;
 
@@ -13,9 +12,10 @@ import java.io.*;
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "ADS")
-public class Advertisement extends BaseEntity implements Serializable {
+public class Advertisement extends BaseEntity{
 
-	@JsonBackReference @ManyToOne(targetEntity = User.class)
+	@JoinColumn
+	@ManyToOne(targetEntity = User.class)
 	private User advertiser;
 
 	@Column(nullable = false) private String title;
@@ -39,5 +39,4 @@ public class Advertisement extends BaseEntity implements Serializable {
 		WAITING,
 		DISAPPROVED
 	}
-
 }
