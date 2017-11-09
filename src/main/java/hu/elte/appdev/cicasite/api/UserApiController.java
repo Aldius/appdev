@@ -40,7 +40,7 @@ public class UserApiController {
 		}
 	}
 
-	@PostMapping("/logout")
+	@GetMapping("/logout")
 	public ResponseEntity<User> logout()
 	{
 		if (userService.logout()){

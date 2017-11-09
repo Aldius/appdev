@@ -10,10 +10,12 @@ import {HomeComponent} from './pages/home/home.component';
 import {MaterialItemsModule} from "./MaterialItemsModule";
 import { MenuComponent } from './components/menu/menu.component';
 import {AuthService} from "./services/auth.service";
+import {AdsService} from "./services/ads.service";
 import { LoginComponent } from './pages/login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ErrorComponent } from './pages/error/error.component';
 import {HttpModule} from "@angular/http";
+import { RegisterComponent } from './pages/register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,8 @@ import {HttpModule} from "@angular/http";
     MenuComponent,
     HomeComponent,
     LoginComponent,
-    ErrorComponent
+    ErrorComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,10 @@ import {HttpModule} from "@angular/http";
     HttpModule,
     BrowserAnimationsModule
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    AdsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

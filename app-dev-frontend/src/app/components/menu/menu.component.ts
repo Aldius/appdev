@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Role} from "../../model/User";
 import {AuthService} from "../../services/auth.service";
+import {ActivatedRoute} from "@angular/router/";
+import {HomeComponent} from "../../pages/home/home.component";
+import {appRoutes} from "../../routes";
+import {rootRoute} from "@angular/router/src/router_module";
 
 interface MenuItem {
   link: String;
@@ -34,5 +38,12 @@ export class MenuComponent implements OnInit {
     } else {
       this.menus = this.roleMenus.get(Role.GUEST)
     }
+  }
+
+  logout() {
+    this.authService.logout().subscribe(
+      res => {
+        console.log(res);
+      })
   }
 }

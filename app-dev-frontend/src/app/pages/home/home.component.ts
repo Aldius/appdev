@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {Ad} from "../../model/Ad";
+import {AdsService} from "../../services/ads.service";
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,14 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  ads: Ad[];
+
+  constructor(private adsService: AdsService) { }
 
   ngOnInit() {
+    this.adsService.getAds().subscribe(res =>{
+      this.ads = res;
+      console.log(this.ads);
+    });
   }
-
 }
