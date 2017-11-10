@@ -17,6 +17,7 @@ import { ErrorComponent } from './pages/error/error.component';
 import {HttpModule} from "@angular/http";
 import { RegisterComponent } from './pages/register/register.component';
 import { NewAdComponent } from './pages/ad/new-ad/new-ad.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NewAdComponent } from './pages/ad/new-ad/new-ad.component';
     ErrorComponent,
     RegisterComponent,
     NewAdComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

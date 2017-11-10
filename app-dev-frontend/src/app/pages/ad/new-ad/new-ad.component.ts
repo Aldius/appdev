@@ -23,6 +23,10 @@ export class NewAdComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(!this.authService.isLoggedIn)
+    {
+      location.assign('login');
+    }
   }
 
   get title() {
