@@ -1,0 +1,42 @@
+<div class="page-body text-center" id="new-ad">
+  <mat-card>
+    <mat-card-header class="mat-h2">New advertisement</mat-card-header>
+    <form [formGroup]="newAdForm" novalidate class="vertical-center form-group">
+      <div class="form-control">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="Title" formControlName="title">
+          <mat-error *ngIf="title.hasError('required')">
+            Title is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-control">
+        <mat-form-field class="form-field">
+          <input matInput placeholder="Picture" formControlName="picture_path">
+          <mat-error *ngIf="picture_path.hasError('required')">
+            Picture is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="form-control">
+        <mat-form-field class="form-field">
+          <mat-select placeholder="Select type" formControlName="adtype" required>
+            <mat-option value="FORSALE">For sale</mat-option>
+            <mat-option value="WOULDBUY">Would buy</mat-option>
+            <mat-option value="LOST">Lost</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="form-control">
+        <mat-form-field class="form-field">
+          <textarea matInput placeholder="Description" formControlName="description"></textarea>
+          <mat-error *ngIf="description.hasError('required')">
+            Description is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button class="mat-primary" (click)="submit()" [disabled]="!newAdForm.valid">Send</button>
+      <a mat-button class="mat-accent" routerLink="/home">Back</a>
+    </form>
+  </mat-card>
+</div>

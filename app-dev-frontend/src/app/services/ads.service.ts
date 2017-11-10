@@ -16,4 +16,11 @@ export class AdsService {
         return res.json();
       })
   }
+
+  newAd(ad: Ad) {
+    return this.http.post(Server.routeTo(Routes.NEW_ADD), ad)
+      .map(res => {
+        return res.json();
+      })
+  }
 }

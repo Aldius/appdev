@@ -3,6 +3,7 @@ export class Routes {
   static REGISTER: String = 'user/register';
   static LOGOUT: String = 'user/logout';
   static HOME: String = 'ad'
+  static NEW_ADD: String = 'ad/add'
 }
 
 export class Server {

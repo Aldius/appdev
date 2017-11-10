@@ -13,3 +13,20 @@ body {
 .page-body {
   margin: 50px;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.vertical-center {
+  display: flex;
+  justify-content: center;
+}
+
+.form-group {
+  display: block;
+}
+
+.form-field {
+  width: 100%;
+}

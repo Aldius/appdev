@@ -15,7 +15,7 @@ import java.io.*;
 public class Advertisement extends BaseEntity{
 
 	@JoinColumn
-	@ManyToOne(targetEntity = User.class)
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class)
 	private User advertiser;
 
 	@Column(nullable = false) private String title;

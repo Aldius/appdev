@@ -52,6 +52,7 @@ public class AdApiController {
 	@Role({USER, ADMIN})
 	@PostMapping("/add")
 	public ResponseEntity<Advertisement> add(@RequestBody Advertisement ad) {
+		ad.setStatus(Status.WAITING);
 		return ResponseEntity.ok(adService.add(ad));
 	}
 

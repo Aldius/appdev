@@ -2,9 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Role} from "../../model/User";
 import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute} from "@angular/router/";
-import {HomeComponent} from "../../pages/home/home.component";
-import {appRoutes} from "../../routes";
-import {rootRoute} from "@angular/router/src/router_module";
 
 interface MenuItem {
   link: String;
@@ -21,10 +18,18 @@ export class MenuComponent implements OnInit {
     {link: '/home', title: 'Home'}
   ];
 
+  private user: MenuItem[] = [
+    {link: '/ad/new', title: 'New advertisement'}
+  ];
+
+  private admin: MenuItem[] = [
+    {link: '/admin', title: 'Admin'}
+  ]
+
   private roleMenus = new Map<Role, MenuItem[]>([
     [Role.GUEST, [...this.common]],
-    [Role.USER, [...this.common]],
-    [Role.ADMIN, [...this.common, {link: '/admin', title: 'Admin'}]],
+    [Role.USER, [...this.common, ...this.user]],
+    [Role.ADMIN, [...this.common, ...this.user, ...this.admin]],
   ]);
 
   menus: MenuItem[];
@@ -33,11 +38,12 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.authService.isLoggedIn) {
-      this.menus = this.roleMenus.get(this.authService.user.role);
-    } else {
-      this.menus = this.roleMenus.get(Role.GUEST)
-    }
+    //if (this.authService.isLoggedIn) {
+    //  this.menus = this.roleMenus.get(this.authService.user.role);
+    //} else {
+    //  this.menus = this.roleMenus.get(Role.GUEST)
+    //}
+    this.menus = this.roleMenus.get(Role.ADMIN);
   }
 
   logout() {

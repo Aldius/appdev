@@ -16,6 +16,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ErrorComponent } from './pages/error/error.component';
 import {HttpModule} from "@angular/http";
 import { RegisterComponent } from './pages/register/register.component';
+import { NewAdComponent } from './pages/ad/new-ad/new-ad.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterComponent } from './pages/register/register.component';
     HomeComponent,
     LoginComponent,
     ErrorComponent,
-    RegisterComponent
+    RegisterComponent,
+    NewAdComponent,
   ],
   imports: [
     BrowserModule,
