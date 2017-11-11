@@ -55,6 +55,7 @@ public class User extends BaseEntity {
 	private List<Message> messagesSent;
 
 	public enum Role {
+		GUEST,
 		ADMIN,
 		USER
 	}
