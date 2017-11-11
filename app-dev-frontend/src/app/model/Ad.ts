@@ -13,6 +13,7 @@ export enum STATUS {
 }
 
 export class Ad  {
+  id: number;
   advertiser: User;
   title: string;
   picture_path: string;

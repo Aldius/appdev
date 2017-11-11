@@ -18,6 +18,7 @@ import {HttpModule} from "@angular/http";
 import { RegisterComponent } from './pages/register/register.component';
 import { NewAdComponent } from './pages/ad/new-ad/new-ad.component';
 import { ProfileComponent } from './pages/profile/profile.component';
+import { ReportComponent } from './pages/report/report.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
     RegisterComponent,
     NewAdComponent,
     ProfileComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,9 @@ import { ProfileComponent } from './pages/profile/profile.component';
     MaterialItemsModule,
     HttpModule,
     BrowserAnimationsModule
+  ],
+  entryComponents: [
+    ReportComponent,
   ],
   providers: [
     AuthService,
