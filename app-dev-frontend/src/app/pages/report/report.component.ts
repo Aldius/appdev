@@ -1,7 +1,6 @@
 import {Component, Inject, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormControl, FormGroup} from "@angular/forms";
-import {User} from "../../model/User";
 import {Report} from "../../model/Report";
 
 @Component({

@@ -10,12 +10,22 @@
         </div>
         <div class="form-control">
           <mat-input-container class="form-field">
+            <input matInput [(ngModel)]="user.full_name" placeholder="Full name"/>
+          </mat-input-container>
+        </div>
+        <div class="form-control">
+          <mat-input-container class="form-field">
             <input matInput [(ngModel)]="user.email" required type="email" pattern="[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+" placeholder="Email" />
           </mat-input-container>
         </div>
         <div class="form-control">
           <mat-input-container class="form-field">
             <input matInput [(ngModel)]="user.password" required placeholder="Password" type="password"/>
+          </mat-input-container>
+        </div>
+        <div class="form-control">
+          <mat-input-container class="form-field">
+            <input matInput [(ngModel)]="user.phone_number" pattern="[0-9]*" placeholder="Phone number" type="tel"/>
           </mat-input-container>
         </div>
       </mat-card-content>

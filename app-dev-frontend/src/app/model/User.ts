@@ -6,14 +6,16 @@ export class User {
   username: String;
   password: String;
   email: String;
-  display_name: String;
+  phone_number: String;
+  full_name: String;
   role: Role;
 
-  constructor(username?: String, password?: String, email?: String, role?: Role, display_name?: String) {
+  constructor(username?: String, password?: String, email?: String, role?: Role, full_name?: String, phone_number?: String) {
     this.username = username || "";
     this.password = password || "";
     this.email = email || "";
     this.role = role || Role.GUEST;
-    this.display_name = display_name || "";
+    this.full_name = full_name || "";
+    this.phone_number = phone_number || "";
   }
 }

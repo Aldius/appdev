@@ -4,6 +4,8 @@ import {AdsService} from "../../services/ads.service";
 import {ReportComponent} from "../report/report.component";
 import {MatDialog} from "@angular/material";
 import {AuthService} from "../../services/auth.service";
+import {ContactComponent} from "../contact/contact.component";
+import {User} from "../../model/User";
 
 
 @Component({
@@ -20,8 +22,6 @@ export class HomeComponent implements OnInit {
 
   report(ad: Ad): void {
     let reportDialogRef = this.dialog.open(ReportComponent, {
-      height: '210px',
-      width: '280px',
       data:{
         user: ad.advertiser,
         reported_by: this.authService.user
@@ -29,6 +29,16 @@ export class HomeComponent implements OnInit {
     });
 
     reportDialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  contact(user: User): void {
+    let contactDialogRef = this.dialog.open(ContactComponent, {
+      data: user
+    })
+
+    contactDialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }

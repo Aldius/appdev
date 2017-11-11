@@ -16,7 +16,8 @@
       </mat-card-content>
       <div class="vertical-center">
         <mat-card-actions>
-          <button mat-raised-button class="mat-primary">CONTACT</button>
+          <button *ngIf="!this.authService.isLoggedIn" mat-raised-button (click)="contact(ad.advertiser)" class="mat-primary">CONTACT</button>
+          <a *ngIf="this.authService.isLoggedIn" mat-raised-button routerLink="/message/{{ad.advertiser.username}}" class="mat-primary">CONTACT</a>
           <button mat-raised-button [disabled]="!this.authService.isLoggedIn" (click)="report(ad)" class="mat-accent">REPORT</button>
         </mat-card-actions>
       </div>

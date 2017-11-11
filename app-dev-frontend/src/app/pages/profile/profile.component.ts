@@ -23,7 +23,11 @@ export class ProfileComponent implements OnInit {
   }
 
   userValid() {
-    return this.user.password != "" && this.user.email != "" && this.user.email.match("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+");
+    return(
+      this.user.password != ""
+      && this.user.email != ""
+      && this.user.email.match("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+")
+      );
   }
 
   submit() {

@@ -19,6 +19,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { NewAdComponent } from './pages/ad/new-ad/new-ad.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportComponent } from './pages/report/report.component';
+import { ContactComponent } from './pages/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ReportComponent } from './pages/report/report.component';
     NewAdComponent,
     ProfileComponent,
     ReportComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +45,7 @@ import { ReportComponent } from './pages/report/report.component';
   ],
   entryComponents: [
     ReportComponent,
+    ContactComponent
   ],
   providers: [
     AuthService,
