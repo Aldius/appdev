@@ -26,24 +26,10 @@ export class MenuComponent implements OnInit {
     {link: '/admin', title: 'Admin'}
   ]
 
-  private roleMenus = new Map<Role, MenuItem[]>([
-    [Role.GUEST, [...this.common]],
-    [Role.USER, [...this.common, ...this.user]],
-    [Role.ADMIN, [...this.common, ...this.user, ...this.admin]],
-  ]);
-
-  menus: MenuItem[];
-
   constructor(private authService: AuthService) {
   }
 
   ngOnInit() {
-    //if (this.authService.isLoggedIn) {
-    //  this.menus = this.roleMenus.get(this.authService.user.role);
-    //} else {
-    //  this.menus = this.roleMenus.get(Role.GUEST)
-    //}
-    this.menus = this.roleMenus.get(Role.ADMIN);
   }
 
   logout() {

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/User";
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../services/auth.service";
+import {MenuComponent} from "../../components/menu/menu.component";
 
 @Component({
   selector: 'app-login',
