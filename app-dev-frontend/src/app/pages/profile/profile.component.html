@@ -1,13 +1,28 @@
 <div class="page-body text-center">
   <h2 class="mat-h2">Profile of: {{user.username}}</h2>
-  <mat-card>
-    <mat-card-content>
-      <p>
-        Username: {{user.username}}
-      </p>
-      <p>
-        Email: {{user.email}}
-      </p>
-    </mat-card-content>
-  </mat-card>
+  <div class="vertical-center">
+    <mat-card>
+      <mat-card-content>
+        <div class="form-control">
+          <mat-input-container class="form-field">
+            <input matInput placeholder="Username" readonly value="{{user.username}}" />
+          </mat-input-container>
+        </div>
+        <div class="form-control">
+          <mat-input-container class="form-field">
+            <input matInput [(ngModel)]="user.email" required type="email" pattern="[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*" placeholder="Email" />
+          </mat-input-container>
+        </div>
+        <div class="form-control">
+          <mat-input-container class="form-field">
+            <input matInput [(ngModel)]="user.password" required placeholder="Password" type="password"/>
+          </mat-input-container>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button class="mat-primary" (click)="submit()" [disabled]="!userValid()">Save</button>
+        <a mat-button class="mat-accent" routerLink="/home">Back</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

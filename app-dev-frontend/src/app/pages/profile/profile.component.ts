@@ -21,4 +21,8 @@ export class ProfileComponent implements OnInit {
     }
     this.user = this.authService.user;
   }
+
+  userValid() {
+    return this.user.password != "" && this.user.email != "" && this.user.email.match("[a-zA-Z0-9]*@[a-zA-Z0-9]*\.[a-zA-Z0-9]*");
+  }
 }

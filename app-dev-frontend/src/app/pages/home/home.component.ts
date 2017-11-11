@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {Ad} from "../../model/Ad";
+import {Ad, ADTYPE} from "../../model/Ad";
 import {AdsService} from "../../services/ads.service";
 
 @Component({
@@ -19,5 +19,10 @@ export class HomeComponent implements OnInit {
       this.ads = res;
       console.log(this.ads);
     });
+  }
+
+  notBuying(ad: Ad)
+  {
+    return ad.adType != ADTYPE.WOULDBUY;
   }
 }

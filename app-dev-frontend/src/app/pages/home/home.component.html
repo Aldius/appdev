@@ -5,9 +5,9 @@
       <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{ad.title}}</mat-card-title>
-        <mat-card-subtitle>{{ad.advertiser.username}}</mat-card-subtitle>
+        <mat-card-subtitle>{{ad.advertiser.username}}, {{ad.adtext}}</mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of the advertisement">
+      <img class="img-responsive" *ngIf="notBuying(ad)" mat-card-image src="{{ad.picture_path}}" alt="Photo of the advertisement">
       <mat-card-content>
         <p>
           {{ad.description}}
