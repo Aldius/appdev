@@ -3,9 +3,9 @@
   <div *ngFor="let ad of ads" class="vertical-center">
     <mat-card>
       <mat-card-header>
-        <div mat-card-avatar></div>
+        <img mat-card-avatar src="https://staticcdn.selio.com/adoos-static/img/user_default.png">
         <mat-card-title>{{ad.title}}</mat-card-title>
-        <mat-card-subtitle>{{ad.advertiser.username}}, {{ad.adtext}}</mat-card-subtitle>
+        <mat-card-subtitle>{{ad.advertiser.username}}, {{ad.adType.toString()}}</mat-card-subtitle>
       </mat-card-header>
       <img class="img-responsive" *ngIf="notBuying(ad)" mat-card-image src="{{ad.picture_path}}" alt="Photo of the advertisement">
       <mat-card-content>

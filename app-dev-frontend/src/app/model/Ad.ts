@@ -13,22 +13,12 @@ export enum STATUS {
 }
 
 export class Ad  {
-  id: number;
   advertiser: User;
   title: string;
   picture_path: string;
   adType: ADTYPE;
   status: STATUS;
   description: string;
-
-  get adtext() : string
-  {
-    switch(this.adType){
-      case ADTYPE.FORSALE: return "Selling";
-      case ADTYPE.LOST: return "Lost";
-      case ADTYPE.WOULDBUY: return "Buying";
-    }
-  }
 
   constructor(advertiser: User, title: string, picture_path: string, adtype: ADTYPE, status: STATUS, description: string) {
     this.advertiser = advertiser;
