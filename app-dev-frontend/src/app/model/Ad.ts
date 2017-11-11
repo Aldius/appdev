@@ -1,22 +1,22 @@
 import {User} from "../model/User";
 
 export enum ADTYPE {
-  FORSALE,
-  WOULDBUY,
-  LOST
+  FORSALE = 'FORSALE',
+  WOULDBUY = 'WOULDBUY',
+  LOST = 'LOST'
 }
 
 export enum STATUS {
-  APPROVED,
-  WAITING,
-  DISAPPROVED
+  APPROVED = 'APPROVED',
+  WAITING = 'WAITING',
+  DISAPPROVED = 'DISAPPROVED'
 }
 
-export class Ad {
+export class Ad  {
   advertiser: User;
   title: string;
   picture_path: string;
-  adtype: ADTYPE;
+  adType: ADTYPE;
   status: STATUS;
   description: string;
 
@@ -24,7 +24,7 @@ export class Ad {
     this.advertiser = advertiser;
     this.title = title;
     this.picture_path = picture_path;
-    this.adtype = adtype;
+    this.adType = adtype;
     this.status = status;
     this.description = description;
   }

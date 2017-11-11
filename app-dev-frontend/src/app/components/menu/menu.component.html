@@ -4,7 +4,13 @@
   </div>
 
   <div class="center">
-    <a mat-button *ngFor="let menu of menus" [routerLink]="menu.link" routerLinkActive="active">{{menu.title}}</a>
+    <a mat-button *ngFor="let menu of common" [routerLink]="menu.link" routerLinkActive="active">{{menu.title}}</a>
+    <span *ngIf="authService.isLoggedIn">
+      <a mat-button *ngFor="let menu of user" [routerLink]="menu.link" routerLinkActive="active">{{menu.title}}</a>
+    </span>
+    <span *ngIf="authService.isAdmin">
+      <a mat-button *ngFor="let menu of admin" [routerLink]="menu.link" routerLinkActive="active">{{menu.title}}</a>
+    </span>
   </div>
 
   <div class="right-side">

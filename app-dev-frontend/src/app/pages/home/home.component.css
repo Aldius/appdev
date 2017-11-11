@@ -2,3 +2,9 @@
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
 }
+
+.img-responsive {
+  min-width: 320px !important;
+  max-width: 600px !important;
+  height: auto;
+}

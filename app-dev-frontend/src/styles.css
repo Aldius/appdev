@@ -30,3 +30,9 @@ body {
 .form-field {
   width: 100%;
 }
+
+.mat-card {
+  width: 100%;
+  max-width: 500px;
+  min-width: 280px;
+}

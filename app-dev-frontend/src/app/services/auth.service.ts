@@ -1,12 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
-import {User} from "../model/User";
+import {Role, User} from "../model/User";
 import {Routes, Server} from "../utils/ServerRoutes";
+import enumerate = Reflect.enumerate;
 
 @Injectable()
 export class AuthService {
   user: User;
   isLoggedIn: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private http: Http) {
     this.user = new User();
@@ -17,6 +19,7 @@ export class AuthService {
       .map(res => {
         this.isLoggedIn = true;
         this.user = res.json();
+        this.isAdmin = this.user.role == Role.ADMIN;
         return this.user;
       })
   }
@@ -35,6 +38,14 @@ export class AuthService {
       .map(res => {
         this.user = null;
         this.isLoggedIn = false;
+        this.isAdmin = false;
+      })
+  }
+
+  modify(user: User) {
+    return this.http.post(Server.routeTo(Routes.MODIFY_USER), user)
+      .map(res => {
+        this.user = res.json();
       })
   }
 }
