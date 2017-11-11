@@ -10,7 +10,7 @@
         </div>
         <div class="form-control">
           <mat-input-container class="form-field">
-            <input matInput [(ngModel)]="user.full_name" placeholder="Full name"/>
+            <input matInput [(ngModel)]="user.fullName" placeholder="Full name"/>
           </mat-input-container>
         </div>
         <div class="form-control">
@@ -25,7 +25,7 @@
         </div>
         <div class="form-control">
           <mat-input-container class="form-field">
-            <input matInput [(ngModel)]="user.phone_number" pattern="[0-9]*" placeholder="Phone number" type="tel"/>
+            <input matInput [(ngModel)]="user.phone" pattern="[+]?[0-9]*" placeholder="Phone number" type="tel"/>
           </mat-input-container>
         </div>
       </mat-card-content>
