@@ -52,41 +52,63 @@ public class AdApiController {
 	@PostMapping("/add")
 	public ResponseEntity<Advertisement> add(@RequestBody Advertisement ad) {
 		if (userService.isLoggedIn()) {
-			return ResponseEntity.ok(adService.add(ad));
+			try {
+				ad.setStatus(Status.WAITING);
+				ad.setAdvertiser(this.userService.getUserRepository().findByUsername(ad.getAdvertiser().getUsername()).get());
+				return ResponseEntity.ok(adService.add(ad));
+			} catch (Exception e)
+			{
+				return ResponseEntity.badRequest().build();
+			}
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 
-	@DeleteMapping("/delete")
+	@PostMapping("/delete")
 	public ResponseEntity deleteAd(@RequestBody Advertisement ad) {
 		if (userService.isLoggedIn() && (userService.getUser().equals(ad.getAdvertiser()) || userService.getUser().getRole().equals(ADMIN))) {
-			adService.deleteAd(ad);
-			return ResponseEntity.ok().build();
+			try {
+				adService.deleteAd(ad);
+				return ResponseEntity.ok().build();
+			} catch (Exception e)
+			{
+				return ResponseEntity.badRequest().build();
+			}
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 
 	@PostMapping("/setstatus")
 	public ResponseEntity<Advertisement> setAdvertisementStatus(@RequestBody Advertisement ad) {
 		if (userService.isLoggedIn() && userService.getUser().getRole().equals(ADMIN)) {
-			return ResponseEntity.ok(adService.editAdvertisement(ad));
+			try {
+				return ResponseEntity.ok(adService.editAdvertisement(ad));
+			} catch (Exception e)
+			{
+				return ResponseEntity.badRequest().build();
+			}
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 
 	@PostMapping("/edit")
 	public ResponseEntity<Advertisement> editAdvertisement(@RequestBody Advertisement ad) {
 		if (userService.isLoggedIn() && userService.getUser().equals(ad.getAdvertiser())) {
-			return ResponseEntity.ok(adService.editAdvertisement(ad));
+			try{
+				return ResponseEntity.ok(adService.editAdvertisement(ad));
+			} catch (Exception e)
+			{
+				return ResponseEntity.badRequest().build();
+			}
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 
@@ -97,7 +119,7 @@ public class AdApiController {
 			return ResponseEntity.ok().build();
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 

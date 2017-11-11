@@ -21,7 +21,6 @@ public class AdService {
 	}
 
 	public Advertisement add(Advertisement ad) {
-		ad.setStatus(Status.WAITING);
 		return adRepository.save(ad);
 	}
 

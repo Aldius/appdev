@@ -20,6 +20,7 @@ import { NewAdComponent } from './pages/ad/new-ad/new-ad.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportComponent } from './pages/report/report.component';
 import { ContactComponent } from './pages/contact/contact.component';
+import {ReportService} from "./services/reports.service";
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { ContactComponent } from './pages/contact/contact.component';
   ],
   providers: [
     AuthService,
-    AdsService
+    AdsService,
+    ReportService
   ],
   bootstrap: [AppComponent]
 })

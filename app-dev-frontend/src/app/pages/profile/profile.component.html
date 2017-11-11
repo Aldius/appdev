@@ -31,6 +31,7 @@
       </mat-card-content>
       <mat-card-actions>
         <button mat-raised-button class="mat-primary" (click)="submit()" [disabled]="!userValid()">Save</button>
+        <button mat-raised-button class="mat-accent" (click)="delete()">DELETE</button>
         <a mat-button class="mat-accent" routerLink="/home">Back</a>
       </mat-card-actions>
     </mat-card>

@@ -11,14 +11,15 @@ export class AdsService {
   }
 
   getAds(): Observable<Ad[]> {
-    return this.http.get(Server.routeTo(Routes.HOME))
+    return this.http.get(Server.routeTo(Routes.GET_ADS))
       .map(res => {
         return res.json();
       })
   }
 
   newAd(ad: Ad) {
-    return this.http.post(Server.routeTo(Routes.NEW_ADD), ad)
+    console.log(ad);
+    return this.http.post(Server.routeTo(Routes.NEW_AD), ad)
       .map(res => {
         return res.json();
       })

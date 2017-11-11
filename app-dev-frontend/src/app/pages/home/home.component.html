@@ -5,7 +5,7 @@
       <mat-card-header>
         <img mat-card-avatar src="https://staticcdn.selio.com/adoos-static/img/user_default.png">
         <mat-card-title>{{ad.title}}</mat-card-title>
-        <mat-card-subtitle>{{ad.advertiser.username}}, {{adtext(ad)}}</mat-card-subtitle>
+        <mat-card-subtitle>{{ad.advertiser.fullName != "" ? ad.advertiser.fullName : ad.advertiser.username}}, {{adtext(ad)}}</mat-card-subtitle>
       </mat-card-header>
       <img class="img-responsive" *ngIf="notBuying(ad)" mat-card-image src="{{ad.picture_path}}" alt="Photo of the advertisement">
       <mat-card-content>

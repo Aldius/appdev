@@ -55,12 +55,18 @@ public class UserService {
 	}
 
 	public void delete(User user) {
-		userRepository.delete(user);
+		User toDelete = userRepository.findByUsername(user.getUsername()).get();
+		userRepository.delete(toDelete);
+		this.user = null;
 	}
 
 	public User modifyUser(User user) {
-		userRepository.delete(user);
-		userRepository.save(user);
+		User currentUser = userRepository.findByUsername(user.getUsername()).get();
+		currentUser.setFullName(user.getFullName());
+		currentUser.setEmail(user.getEmail());
+		currentUser.setPhone(user.getPhone());
+		userRepository.save(currentUser);
+		this.user = currentUser;
 		return user;
 	}
 

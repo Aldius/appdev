@@ -46,6 +46,18 @@ export class AuthService {
     return this.http.post(Server.routeTo(Routes.MODIFY_USER), user)
       .map(res => {
         this.user = res.json();
+        this.isAdmin = this.user.role == Role.ADMIN;
+        return this.user;
+      })
+  }
+
+  delete(user: User)
+  {
+    return this.http.post(Server.routeTo(Routes.DELETE_USER), user)
+      .map(res => {
+        this.user = null;
+        this.isAdmin = false;
+        this.isLoggedIn = false;
       })
   }
 }

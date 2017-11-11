@@ -27,11 +27,25 @@ export class ProfileComponent implements OnInit {
       this.user.password != ""
       && this.user.email != ""
       && this.user.email.match("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+")
-      && this.user.phone.match("\\+?[0-9]*")
+      && this.user.phone.match("[+]?[0-9]*")
       );
   }
 
   submit() {
-    console.log(this.user);
+    this.authService.modify(this.user).subscribe(
+      res => {
+        console.log(res);
+        this.user = this.authService.user;
+      }
+    );
+  }
+
+  delete() {
+    this.authService.delete(this.user).subscribe(
+      res =>{
+        console.log(res);
+        location.assign('home');
+      }
+    );
   }
 }

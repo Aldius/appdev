@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Ad, ADTYPE} from "../../../model/Ad";
+import {Ad, ADTYPE, STATUS} from "../../../model/Ad";
 import {AdsService} from "../../../services/ads.service";
 import {AuthService} from "../../../services/auth.service";
 
@@ -46,11 +46,10 @@ export class NewAdComponent implements OnInit {
   }
 
   submit() {
-    console.log(new Ad(this.authService.user, this.title.value, this.picture_path.value, this.adtype.value, null, this.description.value));
     this.adService.newAd(new Ad(this.authService.user, this.title.value, this.picture_path.value, this.adtype.value, null, this.description.value))
       .subscribe(
         res =>{
-          res;
+          console.log(res);
         },
         err => console.log(err)
       )

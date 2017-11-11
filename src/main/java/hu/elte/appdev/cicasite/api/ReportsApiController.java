@@ -22,23 +22,35 @@ public class ReportsApiController {
 		this.reportsService = reportsService;
 	}
 
-	@GetMapping("/all")
+	@GetMapping()
 	public ResponseEntity<Iterable<Report>> getAll() {
 		if (userService.isLoggedIn() && userService.getUser().getRole().equals(ADMIN)) {
-			return ResponseEntity.ok(reportsService.getAll());
+			try {
+				return ResponseEntity.ok(reportsService.getAll());
+			} catch (Exception e)
+			{
+				return ResponseEntity.badRequest().build();
+			}
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 
-	@PostMapping("/add")
+	@PostMapping()
 	public ResponseEntity<Report> add(@RequestBody Report report) {
 		if (userService.isLoggedIn()) {
-			return ResponseEntity.ok(reportsService.add(report));
+			try {
+				report.setUser(userService.getUserRepository().findByUsername(report.getUser().getUsername()).get());
+				report.setReported_by(userService.getUserRepository().findByUsername(report.getReported_by().getUsername()).get());
+				return ResponseEntity.ok(reportsService.add(report));
+			} catch (Exception e)
+			{
+				return ResponseEntity.badRequest().build();
+			}
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 }

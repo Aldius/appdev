@@ -2,6 +2,7 @@ import {Component, Inject, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Report} from "../../model/Report";
+import {ReportService} from "../../services/reports.service";
 
 @Component({
   selector: 'app-report',
@@ -15,7 +16,7 @@ export class ReportComponent{
     report_reason: new FormControl(''),
   });
 
-  constructor(public dialogRef: MatDialogRef<ReportComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(private reportService: ReportService, public dialogRef: MatDialogRef<ReportComponent>, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   get reportReason()
   {
@@ -23,7 +24,10 @@ export class ReportComponent{
   }
 
   submit() {
-    console.log(new Report(this.data.reported_by, this.data.user, this.reportReason.value));
+    this.reportService.newReport(new Report(this.data.reported_by, this.data.user, this.reportReason.value))
+      .subscribe(
+        res => console.log(res)
+      );
     this.dialogRef.close();
   }
 }

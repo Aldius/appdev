@@ -41,7 +41,7 @@ public class UserApiController {
 	}
 
 	@GetMapping("/logout")
-	public ResponseEntity<User> logout() {
+	public ResponseEntity logout() {
 		if (userService.logout()) {
 			return ResponseEntity.ok().build();
 		}
@@ -62,21 +62,31 @@ public class UserApiController {
 	@PostMapping("/delete")
 	public ResponseEntity deleteUser(@RequestBody User user) {
 		if (userService.isLoggedIn() && (user.getId() == userService.getUser().getId() || userService.getUser().getRole().equals(ADMIN))) {
-			userService.delete(user);
-			return ResponseEntity.ok().build();
+			try {
+				userService.delete(user);
+				return ResponseEntity.ok().build();
+			} catch (Exception e)
+			{
+				return ResponseEntity.badRequest().build();
+			}
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 
 	@PostMapping("/modify")
-	public ResponseEntity modifyUser(@RequestBody User user) {
+	public ResponseEntity<User> modifyUser(@RequestBody User user) {
 		if (userService.isLoggedIn() && (user.getId() == userService.getUser().getId() || userService.getUser().getRole().equals(ADMIN))) {
-			return ResponseEntity.ok(userService.modifyUser(user));
+			try {
+				return ResponseEntity.ok(userService.modifyUser(user));
+			} catch (Exception e)
+			{
+				return ResponseEntity.badRequest().build();
+			}
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(401).build();
 		}
 	}
 
