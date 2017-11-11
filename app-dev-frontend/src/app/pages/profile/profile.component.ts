@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
       this.user.password != ""
       && this.user.email != ""
       && this.user.email.match("[a-zA-Z0-9]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]+")
+      && this.user.phone.match("\\+?[0-9]*")
       );
   }
 
