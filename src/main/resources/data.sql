@@ -1,7 +1,7 @@
 -- noinspection SqlNoDataSourceInspectionForFile
 
-INSERT INTO USER (ID, VERSION, USERNAME, EMAIL, PASSWORD, ROLE)
-VALUES (0, 0, 'admin', 'admin@gmail.com', 'admin', 'ADMIN');
+INSERT INTO USER (ID, VERSION, USERNAME, EMAIL, PASSWORD, ROLE, PHONE, FULL_NAME)
+VALUES (0, 0, 'admin', 'admin@gmail.com', 'admin', 'ADMIN', '+36305556699', 'ADMIN BÉLA');
 
 INSERT INTO ADS (ID, VERSION, ADVERTISER_ID, ADTYPE, STATUS, TITLE)
 VALUES (0, 0, 0, 'FORSALE', 'WAITING', 'FEHÉR CICA ELADÓ');

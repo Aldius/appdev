@@ -12,7 +12,6 @@ public class BaseEntity {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private int id;
 
-	@Version
-	private int version;
+	@Version private int version;
 
 }

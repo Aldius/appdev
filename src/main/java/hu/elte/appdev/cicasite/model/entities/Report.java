@@ -1,10 +1,7 @@
 package hu.elte.appdev.cicasite.model.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -16,16 +13,15 @@ import javax.persistence.*;
 @Table(name = "REPORTS")
 public class Report extends BaseEntity {
 
-	@JoinColumn
-	@ManyToOne(targetEntity = User.class)
-	private User user;
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class) private User user;
 
-	private User reported_by;
+	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class) private User reported_by;
 
-	@Enumerated(EnumType.STRING)
-	private ReportReason reason;
+	@Enumerated(EnumType.STRING) private ReportReason reason;
 
-	public enum ReportReason{
-		REASON1, REASON2, REASON3
+	public enum ReportReason {
+		REASON1,
+		REASON2,
+		REASON3
 	}
 }

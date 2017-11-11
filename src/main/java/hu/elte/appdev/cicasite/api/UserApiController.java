@@ -3,7 +3,6 @@ package hu.elte.appdev.cicasite.api;
 
 import hu.elte.appdev.cicasite.model.entities.*;
 import hu.elte.appdev.cicasite.service.*;
-import hu.elte.appdev.cicasite.service.annotations.*;
 import hu.elte.appdev.cicasite.service.exceptions.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.http.*;
@@ -22,13 +21,14 @@ public class UserApiController {
 		this.userService = userService;
 	}
 
-	@Role({USER, ADMIN})
 	@GetMapping
 	public ResponseEntity<User> user() {
 		if (userService.isLoggedIn()) {
 			return ResponseEntity.ok(userService.getUser());
 		}
-		return ResponseEntity.badRequest().build();
+		else {
+			return ResponseEntity.badRequest().build();
+		}
 	}
 
 	@PostMapping("/login")
@@ -41,18 +41,43 @@ public class UserApiController {
 	}
 
 	@GetMapping("/logout")
-	public ResponseEntity<User> logout()
-	{
-		if (userService.logout()){
-			return ResponseEntity.accepted().build();
-		} else
-		{
+	public ResponseEntity<User> logout() {
+		if (userService.logout()) {
+			return ResponseEntity.ok().build();
+		}
+		else {
 			return ResponseEntity.badRequest().build();
 		}
 	}
 
 	@PostMapping("/register")
 	public ResponseEntity<User> register(@RequestBody User user) {
-		return ResponseEntity.ok(userService.register(user));
+		try {
+			return ResponseEntity.ok(userService.register(user));
+		} catch (AlreadyRegisteredException e) {
+			return ResponseEntity.badRequest().build();
+		}
 	}
+
+	@PostMapping("/delete")
+	public ResponseEntity deleteUser(@RequestBody User user) {
+		if (userService.isLoggedIn() && (user.getId() == userService.getUser().getId() || userService.getUser().getRole().equals(ADMIN))) {
+			userService.delete(user);
+			return ResponseEntity.ok().build();
+		}
+		else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
+	@PostMapping("/modify")
+	public ResponseEntity modifyUser(@RequestBody User user) {
+		if (userService.isLoggedIn() && (user.getId() == userService.getUser().getId() || userService.getUser().getRole().equals(ADMIN))) {
+			return ResponseEntity.ok(userService.modifyUser(user));
+		}
+		else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 }

@@ -16,38 +16,52 @@ import static hu.elte.appdev.cicasite.model.entities.User.Role.*;
 public class UserService {
 
 	private final UserRepository userRepository;
-	private User user;
+	private       User           user;
 
 	@Autowired
 	public UserService(UserRepository userRepository) {this.userRepository = userRepository;}
 
 	public User login(User user) throws UserNotValidException {
-		if (isValid(user)) {
-			return this.user = userRepository.findByUsername(user.getUsername()).get();
+		if (userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()).isPresent()) {
+			this.user = userRepository.findByUsername(user.getUsername()).get();
+			return this.user;
 		}
-		throw new UserNotValidException();
+		else {
+			throw new UserNotValidException();
+		}
 	}
 
-	public boolean logout(){
-		if(isLoggedIn()){
+	public boolean logout() {
+		if (isLoggedIn()) {
 			this.user = null;
 			return true;
 		}
 		return false;
 	}
 
-	private boolean isValid(User user) {
-		return userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()).isPresent();
-	}
-
-	public User register(User user) {
-		user.setRole(USER);
-		this.user = userRepository.save(user);
-		return user;
-	}
-
 	public boolean isLoggedIn() {
 		return user != null;
+	}
+
+	public User register(User user) throws AlreadyRegisteredException {
+		if (userRepository.findByUsername(user.getUsername()).isPresent() || userRepository.findByEmail(user.getEmail()).isPresent()) {
+			throw new AlreadyRegisteredException();
+		}
+		else {
+			user.setRole(USER);
+			this.user = userRepository.save(user);
+			return this.user;
+		}
+	}
+
+	public void delete(User user) {
+		userRepository.delete(user);
+	}
+
+	public User modifyUser(User user) {
+		userRepository.delete(user);
+		userRepository.save(user);
+		return user;
 	}
 
 }

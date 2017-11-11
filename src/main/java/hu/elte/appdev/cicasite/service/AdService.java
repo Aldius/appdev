@@ -3,7 +3,6 @@ package hu.elte.appdev.cicasite.service;
 
 import hu.elte.appdev.cicasite.model.entities.*;
 import hu.elte.appdev.cicasite.repository.*;
-import hu.elte.appdev.cicasite.service.exceptions.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -22,14 +21,12 @@ public class AdService {
 	}
 
 	public Advertisement add(Advertisement ad) {
-		adRepository.save(ad);
-		return ad;
+		ad.setStatus(Status.WAITING);
+		return adRepository.save(ad);
 	}
 
 	public Iterable<Advertisement> getAds() {
-		Iterable<Advertisement> ads;
-		ads = adRepository.findByStatus(APPROVED);
-		return ads;
+		return adRepository.findByStatus(APPROVED);
 	}
 
 	public Iterable<Advertisement> getUserAds(User user) {
@@ -54,25 +51,14 @@ public class AdService {
 		return ads;
 	}
 
-	public User deleteAd(Advertisement ad, User user) throws InsufficientRightsException {
-		Advertisement tmp = adRepository.findOne(ad.getId());
-		if (tmp.getAdvertiser().equals(user) || user.getRole().equals(ADMIN)) {
-			adRepository.delete(ad.getId());
-			return user;
-		}
-		else {
-			throw new InsufficientRightsException();
-		}
+	public void deleteAd(Advertisement ad) {
+		adRepository.delete(ad);
 	}
 
-	public Advertisement editAdvertisement(Advertisement ad, User user) throws InsufficientRightsException {
-		if (user.getRole().equals(ADMIN) || ad.getAdvertiser().equals(user)) {
-			adRepository.delete(ad.getId());
-			adRepository.save(ad);
-			return ad;
-		}
-		else {
-			throw new InsufficientRightsException();
-		}
+	public Advertisement editAdvertisement(Advertisement ad) {
+		adRepository.delete(ad);
+		return adRepository.save(ad);
 	}
+
+
 }

@@ -1,15 +1,9 @@
 package hu.elte.appdev.cicasite.model.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Data
@@ -20,13 +14,9 @@ import javax.persistence.Table;
 @Table(name = "MESSAGES")
 public class Message extends BaseEntity {
 
-    @JoinColumn
-	@ManyToOne(targetEntity = User.class)
-    private User user;
+	@ManyToOne private User user;
 
-    @JoinColumn
-	@ManyToOne(targetEntity = User.class)
-    private User from;
+	@ManyToOne private User from;
 
 	private String message;
 
