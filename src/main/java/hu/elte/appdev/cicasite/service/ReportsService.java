@@ -17,4 +17,7 @@ public class ReportsService {
 		return reportsRepository.findAll();
 	}
 
+	public Report add(Report report) {
+		return reportsRepository.save(report);
+	}
 }

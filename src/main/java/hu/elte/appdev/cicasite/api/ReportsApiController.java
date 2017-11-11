@@ -31,4 +31,14 @@ public class ReportsApiController {
 			return ResponseEntity.badRequest().build();
 		}
 	}
+
+	@PostMapping("/add")
+	public ResponseEntity<Report> add(@RequestBody Report report) {
+		if (userService.isLoggedIn()) {
+			return ResponseEntity.ok(reportsService.add(report));
+		}
+		else {
+			return ResponseEntity.badRequest().build();
+		}
+	}
 }

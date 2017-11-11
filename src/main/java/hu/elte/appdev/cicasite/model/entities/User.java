@@ -17,13 +17,13 @@ public class User extends BaseEntity {
 
 	@Column(nullable = false, unique = true) private String username;
 
-	private String fullName;
+	private String fullName = "";
 
 	@Column(nullable = false) private String password;
 
 	@Column(nullable = false, unique = true) private String email;
 
-	private String phone;
+	private String phone = "";
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
