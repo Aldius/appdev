@@ -19,8 +19,6 @@ export class AuthService {
       .map(res => {
         this.isLoggedIn = true;
         this.user = res.json();
-        console.log(this.user.role.toString());
-        console.log(Role.ADMIN);
         this.isAdmin = this.user.role == Role.ADMIN;
         return this.user;
       })

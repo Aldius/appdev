@@ -1,15 +1,15 @@
 import {User} from "../model/User";
 
 export enum ADTYPE {
-  FORSALE,
-  WOULDBUY,
-  LOST
+  FORSALE = 'FORSALE',
+  WOULDBUY = 'WOULDBUY',
+  LOST = 'LOST'
 }
 
 export enum STATUS {
-  APPROVED,
-  WAITING,
-  DISAPPROVED
+  APPROVED = 'APPROVED',
+  WAITING = 'WAITING',
+  DISAPPROVED = 'DISAPPROVED'
 }
 
 export class Ad  {

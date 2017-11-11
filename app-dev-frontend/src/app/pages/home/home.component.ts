@@ -54,4 +54,12 @@ export class HomeComponent implements OnInit {
   {
     return ad.adType != ADTYPE.WOULDBUY;
   }
+
+  adtext(ad: Ad) {
+    switch(ad.adType){
+      case ADTYPE.FORSALE: return "Selling";
+      case ADTYPE.WOULDBUY: return "Buying";
+      case ADTYPE.LOST: return "Lost";
+    }
+  }
 }
