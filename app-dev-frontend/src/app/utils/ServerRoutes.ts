@@ -2,8 +2,9 @@ export class Routes {
   static LOGIN: String = 'user/login';
   static REGISTER: String = 'user/register';
   static LOGOUT: String = 'user/logout';
-  static HOME: String = 'ad'
-  static NEW_ADD: String = 'ad/add'
+  static MODIFY_USER: String = 'user/modify';
+  static HOME: String = 'ad';
+  static NEW_ADD: String = 'ad/add';
 }
 
 export class Server {

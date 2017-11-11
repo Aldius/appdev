@@ -37,4 +37,11 @@ export class AuthService {
         this.isLoggedIn = false;
       })
   }
+
+  modify(user: User) {
+    return this.http.post(Server.routeTo(Routes.MODIFY_USER), user)
+      .map(res => {
+        this.user = res.json();
+      })
+  }
 }

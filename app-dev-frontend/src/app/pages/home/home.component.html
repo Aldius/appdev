@@ -1,5 +1,5 @@
-<div class="page-body text-center">
-  <h2 class="mat-h2">Recent advertisements!</h2>
+<div class="page-body">
+  <h2 class="mat-h2 text-center">Recent advertisements!</h2>
   <div *ngFor="let ad of ads" class="vertical-center">
     <mat-card>
       <mat-card-header>
@@ -9,14 +9,17 @@
       </mat-card-header>
       <img class="img-responsive" *ngIf="notBuying(ad)" mat-card-image src="{{ad.picture_path}}" alt="Photo of the advertisement">
       <mat-card-content>
+        <h3 class="mat-h3">Description</h3>
         <p>
           {{ad.description}}
         </p>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button class="mat-primary">CONTACT</button>
-        <button mat-raised-button [disabled]="!this.authService.isLoggedIn" (click)="report(ad)" class="mat-accent">REPORT</button>
-      </mat-card-actions>
+      <div class="vertical-center">
+        <mat-card-actions>
+          <button mat-raised-button class="mat-primary">CONTACT</button>
+          <button mat-raised-button [disabled]="!this.authService.isLoggedIn" (click)="report(ad)" class="mat-accent">REPORT</button>
+        </mat-card-actions>
+      </div>
     </mat-card>
   </div>
 </div>

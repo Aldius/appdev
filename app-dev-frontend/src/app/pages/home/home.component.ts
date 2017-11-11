@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   report(ad: Ad): void {
     let reportDialogRef = this.dialog.open(ReportComponent, {
       height: '210px',
-      width: '320px',
+      width: '280px',
       data:{
         user: ad.advertiser,
         reported_by: this.authService.user
