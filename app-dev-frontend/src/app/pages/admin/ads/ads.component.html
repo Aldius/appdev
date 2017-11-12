@@ -1,0 +1,45 @@
+<div class="page-body">
+  <div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.advertiser.fullName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.advertiser.username}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.title}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.status}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Manage </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <a (click)="delete(row)"><i class="material-icons" matTooltip="Delete ad" matTooltipPosition="above">delete</i></a>
+          <a (click)="changeStatus(row)"><i class="material-icons" matTooltip="Edit status" matTooltipPosition="above">mode_edit</i></a>
+          <a><i class="material-icons" matTooltip="View ad" matTooltipPosition="above">open_in_new</i></a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>

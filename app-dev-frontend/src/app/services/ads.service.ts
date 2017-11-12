@@ -50,4 +50,19 @@ export class AdsService {
         return res.json();
       })
   }
+
+  getAdsForAdmin()
+  {
+    return this.http.get(Server.routeTo(Routes.ADMIN_ADS)).map(response => {
+      return response.json();
+    });
+  }
+
+  setStatus(ad: Ad)
+  {
+    return this.http.post(Server.routeTo(Routes.AD_STATUS), ad)
+      .map(res => {
+        return res;
+      })
+  }
 }

@@ -9,6 +9,8 @@ export class Routes {
   static NEW_AD: String = 'ad/add';
   static DELETE_AD: String = 'ad/delete';
   static MODIFY_AD: String = 'ad/modify';
+  static ADMIN_ADS: String = 'ad/all'
+  static AD_STATUS: String = 'ad/setstatus'
   static REPORT: String = 'reports';
 }
 

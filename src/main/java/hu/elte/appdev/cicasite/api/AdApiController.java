@@ -31,8 +31,17 @@ public class AdApiController {
 
 	@GetMapping
 	public ResponseEntity<Iterable<Advertisement>> getAds() {
-		return ResponseEntity.ok(adService.getAds());
+        return ResponseEntity.ok(adService.getAds(false));
 	}
+
+	@GetMapping("/all")
+    public ResponseEntity<Iterable<Advertisement>> getAdsForAdmin() {
+	    if(userService.isLoggedIn()) {
+            return ResponseEntity.ok(adService.getAds(userService.getUser().getRole().equals(ADMIN)));
+        } else {
+	        return ResponseEntity.status(401).build();
+        }
+    }
 
 	@PostMapping("/user")
 	public ResponseEntity<Iterable<Advertisement>> getUserAds(@RequestBody User user) {
@@ -59,6 +68,7 @@ public class AdApiController {
 		try {
 			if (userService.isLoggedIn()) {
 				ad.setStatus(Status.WAITING);
+				ad.setAdvertiser(userService.getUserRepository().findByUsernameAndPassword(ad.getAdvertiser().getUsername(),ad.getAdvertiser().getPassword()).get());
 				return ResponseEntity.ok(adService.add(ad));
 			}
 			else {
@@ -90,7 +100,7 @@ public class AdApiController {
 	public ResponseEntity<Advertisement> setAdvertisementStatus(@RequestBody Advertisement ad) {
 		if (userService.isLoggedIn() && userService.getUser().getRole().equals(ADMIN)) {
 			try {
-				return ResponseEntity.ok(adService.editAdvertisement(ad));
+				return ResponseEntity.ok(adService.changeStatus(ad));
 			} catch (Exception e)
 			{
 				return ResponseEntity.badRequest().build();

@@ -23,6 +23,8 @@ import { ContactComponent } from './pages/contact/contact.component';
 import {ReportService} from "./services/reports.service";
 import { MyAdsComponent } from './pages/ad/my-ads/my-ads.component';
 import { EditAdComponent } from './pages/ad/edit-ad/edit-ad.component';
+import { AdsComponent } from './pages/admin/ads/ads.component';
+import { ChangeStatusComponent } from './pages/admin/change-status/change-status.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { EditAdComponent } from './pages/ad/edit-ad/edit-ad.component';
     ContactComponent,
     MyAdsComponent,
     EditAdComponent,
+    AdsComponent,
+    ChangeStatusComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import { EditAdComponent } from './pages/ad/edit-ad/edit-ad.component';
   entryComponents: [
     ReportComponent,
     ContactComponent,
-    EditAdComponent
+    EditAdComponent,
+    ChangeStatusComponent
   ],
   providers: [
     AuthService,

@@ -25,7 +25,13 @@ public class AdService {
 		return adRepository.save(ad);
 	}
 
-	public Iterable<Advertisement> getAds() {
+
+	public Iterable<Advertisement> getAds(boolean isAdmin) {
+		if(isAdmin)
+		{
+			return adRepository.findAll();
+		}
+
 		return adRepository.findByStatus(APPROVED);
 	}
 
@@ -47,6 +53,12 @@ public class AdService {
 	public void deleteAd(Advertisement ad) {
 		Advertisement toDelete = adRepository.findById(ad.getId());
 		adRepository.delete(toDelete);
+	}
+
+	public Advertisement changeStatus(Advertisement ad) {
+		Advertisement currentAd = adRepository.findById(ad.getId());
+		currentAd.setStatus(ad.getStatus());
+		return adRepository.save(currentAd);
 	}
 
 	public Advertisement editAdvertisement(Advertisement ad) {
