@@ -39,6 +39,7 @@ export class AuthService {
         this.user = null;
         this.isLoggedIn = false;
         this.isAdmin = false;
+        return res;
       })
   }
 

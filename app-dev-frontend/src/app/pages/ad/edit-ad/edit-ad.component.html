@@ -1,0 +1,37 @@
+<div class="dialog-body">
+  <h2 mat-dialog-title class="text-center">Edit advertisement</h2>
+  <mat-dialog-content>
+    <div class="form-group">
+      <div class="form-control">
+        <mat-input-container class="form-field">
+          <input matInput [(ngModel)]="data.title" placeholder="Title" />
+        </mat-input-container>
+      </div>
+      <div *ngIf="notBuying()" class="form-control">
+        <mat-input-container class="form-field">
+          <input matInput [(ngModel)]="data.picture_path" required placeholder="Picture path"/>
+        </mat-input-container>
+      </div>
+      <div class="form-control">
+        <mat-input-container class="form-field">
+          <mat-select placeholder="Select type" [(ngModel)]="data.adType" required>
+            <mat-option value="FORSALE">For sale</mat-option>
+            <mat-option value="WOULDBUY">Would buy</mat-option>
+            <mat-option value="LOST">Lost</mat-option>
+          </mat-select>
+        </mat-input-container>
+      </div>
+      <div class="form-control">
+        <mat-input-container class="form-field">
+          <input matInput [(ngModel)]="data.description" required placeholder="Description"/>
+        </mat-input-container>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+      <div class="vertical-center">
+        <button mat-raised-button class="mat-primary" (click)="submit()" [disabled]="!adValid()">Save</button>
+        <button mat-button mat-dialog-close class="mat-accent">Back</button>
+      </div>
+  </mat-dialog-actions>
+</div>

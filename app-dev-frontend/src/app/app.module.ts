@@ -22,6 +22,7 @@ import { ReportComponent } from './pages/report/report.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import {ReportService} from "./services/reports.service";
 import { MyAdsComponent } from './pages/ad/my-ads/my-ads.component';
+import { EditAdComponent } from './pages/ad/edit-ad/edit-ad.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { MyAdsComponent } from './pages/ad/my-ads/my-ads.component';
     ReportComponent,
     ContactComponent,
     MyAdsComponent,
+    EditAdComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ import { MyAdsComponent } from './pages/ad/my-ads/my-ads.component';
   ],
   entryComponents: [
     ReportComponent,
-    ContactComponent
+    ContactComponent,
+    EditAdComponent
   ],
   providers: [
     AuthService,

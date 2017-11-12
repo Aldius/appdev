@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import {Ad, ADTYPE} from "../../../model/Ad";
 import {AuthService} from "../../../services/auth.service";
 import {AdsService} from "../../../services/ads.service";
+import {EditAdComponent} from "../edit-ad/edit-ad.component";
+import {MatDialog} from "@angular/material";
 
 @Component({
   selector: 'app-my-ads',
@@ -13,7 +15,7 @@ export class MyAdsComponent implements OnInit {
 
   ads: Ad[];
 
-  constructor(private authService: AuthService, private adsService: AdsService) { }
+  constructor(private authService: AuthService, private adsService: AdsService, public dialog: MatDialog) { }
 
   ngOnInit() {
     if(!this.authService.isLoggedIn)
@@ -37,6 +39,18 @@ export class MyAdsComponent implements OnInit {
       }
       console.log(res);
     })
+  }
+
+  modifyAd(ad: Ad): void {
+    let modifyDialogRef = this.dialog.open(EditAdComponent, {
+      data: ad
+    });
+
+    modifyDialogRef.afterClosed().subscribe(data => {
+      if(!data) {
+        console.log("No change detected")
+      }
+    });
   }
 
   notBuying(ad: Ad)

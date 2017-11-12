@@ -50,7 +50,11 @@ public class AdService {
 	}
 
 	public Advertisement editAdvertisement(Advertisement ad) {
-		adRepository.delete(ad);
-		return adRepository.save(ad);
+		Advertisement currentAd = adRepository.findById(ad.getId());
+		currentAd.setAdType(ad.getAdType());
+		currentAd.setDescription(ad.getDescription());
+		currentAd.setTitle(ad.getTitle());
+		currentAd.setPicture_path(ad.getPicture_path());
+		return adRepository.save(currentAd);
 	}
 }

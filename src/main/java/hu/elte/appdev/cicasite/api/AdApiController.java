@@ -101,19 +101,19 @@ public class AdApiController {
 		}
 	}
 
-	@PostMapping("/edit")
+	@PostMapping("/modify")
 	public ResponseEntity<Advertisement> editAdvertisement(@RequestBody Advertisement ad) {
-		if (userService.isLoggedIn() && userService.getUser().equals(ad.getAdvertiser())) {
-			try{
-				return ResponseEntity.ok(adService.editAdvertisement(ad));
-			} catch (Exception e)
-			{
-				return ResponseEntity.badRequest().build();
-			}
-		}
-		else {
-			return ResponseEntity.status(401).build();
-		}
+        try{
+            if (userService.isLoggedIn() && userService.getUser().getId() == ad.getAdvertiser().getId()) {
+                return ResponseEntity.ok(adService.editAdvertisement(ad));
+            }
+            else {
+                return ResponseEntity.status(401).build();
+            }
+        } catch (Exception e)
+        {
+            return ResponseEntity.badRequest().build();
+        }
 	}
 
 	@PostMapping("/imageupload")

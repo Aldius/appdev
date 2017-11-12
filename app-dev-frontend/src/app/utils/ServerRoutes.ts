@@ -7,7 +7,8 @@ export class Routes {
   static GET_ADS: String = 'ad';
   static USER_ADS: String = 'ad/user';
   static NEW_AD: String = 'ad/add';
-  static DELETE_AD: String = 'ad/delete'
+  static DELETE_AD: String = 'ad/delete';
+  static MODIFY_AD: String = 'ad/modify';
   static REPORT: String = 'reports';
 }
 

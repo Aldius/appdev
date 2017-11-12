@@ -41,4 +41,13 @@ export class AdsService {
         return res;
       })
   }
+
+  modifyAd(ad: Ad)
+  {
+    console.log(ad);
+    return this.http.post(Server.routeTo(Routes.MODIFY_AD), ad)
+      .map(res => {
+        return res.json();
+      })
+  }
 }
