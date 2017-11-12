@@ -31,7 +31,7 @@ public class User extends BaseEntity {
 
 	@JsonIgnore
 	@JoinColumn(name = "ADVERTISER_ID")
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Advertisement.class)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true, targetEntity = Advertisement.class)
 	private List<Advertisement> ads;
 
 	@JsonIgnore

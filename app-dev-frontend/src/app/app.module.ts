@@ -21,6 +21,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ReportComponent } from './pages/report/report.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import {ReportService} from "./services/reports.service";
+import { MyAdsComponent } from './pages/ad/my-ads/my-ads.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {ReportService} from "./services/reports.service";
     ProfileComponent,
     ReportComponent,
     ContactComponent,
+    MyAdsComponent,
   ],
   imports: [
     BrowserModule,

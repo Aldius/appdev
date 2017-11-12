@@ -5,6 +5,7 @@ import hu.elte.appdev.cicasite.model.entities.*;
 import hu.elte.appdev.cicasite.repository.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+import org.springframework.util.SerializationUtils;
 
 import static hu.elte.appdev.cicasite.model.entities.Advertisement.*;
 import static hu.elte.appdev.cicasite.model.entities.Advertisement.Status.*;
@@ -29,14 +30,7 @@ public class AdService {
 	}
 
 	public Iterable<Advertisement> getUserAds(User user) {
-		Iterable<Advertisement> ads;
-		if (user.getRole().equals(ADMIN)) {
-			ads = adRepository.findAll();
-		}
-		else {
-			ads = adRepository.findByStatus(APPROVED);
-		}
-		return ads;
+		return adRepository.findByAdvertiser(user);
 	}
 
 	public Iterable<Advertisement> getUserAdsByType(AdType adType, User user) {
@@ -51,13 +45,12 @@ public class AdService {
 	}
 
 	public void deleteAd(Advertisement ad) {
-		adRepository.delete(ad);
+		Advertisement toDelete = adRepository.findById(ad.getId());
+		adRepository.delete(toDelete);
 	}
 
 	public Advertisement editAdvertisement(Advertisement ad) {
 		adRepository.delete(ad);
 		return adRepository.save(ad);
 	}
-
-
 }

@@ -5,6 +5,7 @@ import {ErrorComponent} from "./pages/error/error.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {NewAdComponent} from "./pages/ad/new-ad/new-ad.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
+import {MyAdsComponent} from "./pages/ad/my-ads/my-ads.component";
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -13,5 +14,6 @@ export const appRoutes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'ad/new', component: NewAdComponent},
+  {path: 'ad/own', component: MyAdsComponent},
   {path: '**', component: ErrorComponent}
 ];

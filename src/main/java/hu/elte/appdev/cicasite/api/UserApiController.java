@@ -61,32 +61,32 @@ public class UserApiController {
 
 	@PostMapping("/delete")
 	public ResponseEntity deleteUser(@RequestBody User user) {
-		if (userService.isLoggedIn() && (user.getId() == userService.getUser().getId() || userService.getUser().getRole().equals(ADMIN))) {
-			try {
+		try {
+			if (userService.isLoggedIn() && (user.getId() == userService.getUser().getId() || userService.getUser().getRole().equals(ADMIN))) {
 				userService.delete(user);
 				return ResponseEntity.ok().build();
-			} catch (Exception e)
-			{
-				return ResponseEntity.badRequest().build();
 			}
-		}
-		else {
-			return ResponseEntity.status(401).build();
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
 		}
 	}
 
 	@PostMapping("/modify")
 	public ResponseEntity<User> modifyUser(@RequestBody User user) {
-		if (userService.isLoggedIn() && (user.getId() == userService.getUser().getId() || userService.getUser().getRole().equals(ADMIN))) {
-			try {
+		try {
+			if (userService.isLoggedIn() && (user.getId() == userService.getUser().getId() || userService.getUser().getRole().equals(ADMIN))) {
 				return ResponseEntity.ok(userService.modifyUser(user));
-			} catch (Exception e)
-			{
-				return ResponseEntity.badRequest().build();
 			}
-		}
-		else {
-			return ResponseEntity.status(401).build();
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
 		}
 	}
 

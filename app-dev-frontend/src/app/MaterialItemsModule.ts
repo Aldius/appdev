@@ -6,13 +6,14 @@ import {
   MatTableModule,
   MatToolbarModule,
   MatCardModule,
-  MatDialogModule
+  MatDialogModule,
+  MatMenuModule
 } from '@angular/material';
 import {NgModule} from "@angular/core";
 
 @NgModule({
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatTableModule, MatSelectModule, MatCardModule, MatDialogModule],
-  exports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatTableModule, MatSelectModule, MatCardModule, MatDialogModule],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatTableModule, MatSelectModule, MatCardModule, MatDialogModule, MatMenuModule],
+  exports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatToolbarModule, MatTableModule, MatSelectModule, MatCardModule, MatDialogModule, MatMenuModule],
 })
 export class MaterialItemsModule {
 }

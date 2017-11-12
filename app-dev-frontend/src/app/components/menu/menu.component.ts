@@ -18,8 +18,9 @@ export class MenuComponent implements OnInit {
     {link: '/home', title: 'Home'}
   ];
 
-  private user: MenuItem[] = [
-    {link: '/ad/new', title: 'New advertisement'}
+  private ads: MenuItem[] = [
+    {link: '/ad/new', title: 'New advertisement'},
+    {link: '/ad/own', title: 'My advertisements'},
   ];
 
   private admin: MenuItem[] = [

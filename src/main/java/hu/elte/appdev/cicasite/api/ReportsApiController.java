@@ -24,33 +24,33 @@ public class ReportsApiController {
 
 	@GetMapping()
 	public ResponseEntity<Iterable<Report>> getAll() {
-		if (userService.isLoggedIn() && userService.getUser().getRole().equals(ADMIN)) {
-			try {
+		try {
+			if (userService.isLoggedIn() && userService.getUser().getRole().equals(ADMIN)) {
 				return ResponseEntity.ok(reportsService.getAll());
-			} catch (Exception e)
-			{
-				return ResponseEntity.badRequest().build();
 			}
-		}
-		else {
-			return ResponseEntity.status(401).build();
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
 		}
 	}
 
 	@PostMapping()
 	public ResponseEntity<Report> add(@RequestBody Report report) {
-		if (userService.isLoggedIn()) {
-			try {
+		try {
+			if (userService.isLoggedIn()) {
 				report.setUser(userService.getUserRepository().findByUsername(report.getUser().getUsername()).get());
 				report.setReported_by(userService.getUserRepository().findByUsername(report.getReported_by().getUsername()).get());
 				return ResponseEntity.ok(reportsService.add(report));
-			} catch (Exception e)
-			{
-				return ResponseEntity.badRequest().build();
 			}
-		}
-		else {
-			return ResponseEntity.status(401).build();
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
 		}
 	}
 }

@@ -5,8 +5,10 @@ export class Routes {
   static MODIFY_USER: String = 'user/modify';
   static DELETE_USER: String = 'user/delete';
   static GET_ADS: String = 'ad';
+  static USER_ADS: String = 'ad/user';
   static NEW_AD: String = 'ad/add';
-  static REPORT: String = 'reports'
+  static DELETE_AD: String = 'ad/delete'
+  static REPORT: String = 'reports';
 }
 
 export class Server {

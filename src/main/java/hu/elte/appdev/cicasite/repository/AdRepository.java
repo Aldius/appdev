@@ -15,4 +15,7 @@ public interface AdRepository extends CrudRepository<Advertisement, Integer> {
 
 	Iterable<Advertisement> findByAdTypeAndStatus(AdType adType, Status status);
 
+	Iterable<Advertisement> findByAdvertiser(User advertiser);
+
+	Advertisement findById(int id);
 }

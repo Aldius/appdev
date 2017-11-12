@@ -34,12 +34,17 @@ public class AdApiController {
 		return ResponseEntity.ok(adService.getAds());
 	}
 
-	@GetMapping("/own")
-	public ResponseEntity<Iterable<Advertisement>> getUserAds() {
-		if (userService.isLoggedIn()) {
-			return ResponseEntity.ok(adService.getUserAds(userService.getUser()));
-		}
-		else {
+	@PostMapping("/user")
+	public ResponseEntity<Iterable<Advertisement>> getUserAds(@RequestBody User user) {
+		try{
+			if (userService.isLoggedIn() && (user.getUsername().equals(userService.getUser().getUsername()) || user.getRole().equals(ADMIN))) {
+				return ResponseEntity.ok(adService.getUserAds(userService.getUserRepository().findByUsername(userService.getUser().getUsername()).get()));
+			}
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
 			return ResponseEntity.badRequest().build();
 		}
 	}
@@ -51,34 +56,33 @@ public class AdApiController {
 
 	@PostMapping("/add")
 	public ResponseEntity<Advertisement> add(@RequestBody Advertisement ad) {
-		if (userService.isLoggedIn()) {
-			try {
+		try {
+			if (userService.isLoggedIn()) {
 				ad.setStatus(Status.WAITING);
-				ad.setAdvertiser(this.userService.getUserRepository().findByUsername(ad.getAdvertiser().getUsername()).get());
 				return ResponseEntity.ok(adService.add(ad));
-			} catch (Exception e)
-			{
-				return ResponseEntity.badRequest().build();
 			}
-		}
-		else {
-			return ResponseEntity.status(401).build();
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
 		}
 	}
 
 	@PostMapping("/delete")
 	public ResponseEntity deleteAd(@RequestBody Advertisement ad) {
-		if (userService.isLoggedIn() && (userService.getUser().equals(ad.getAdvertiser()) || userService.getUser().getRole().equals(ADMIN))) {
-			try {
+		try {
+			if (userService.isLoggedIn() && (userService.getUser().getId() == ad.getAdvertiser().getId() || userService.getUser().getRole().equals(ADMIN))){
 				adService.deleteAd(ad);
 				return ResponseEntity.ok().build();
-			} catch (Exception e)
-			{
-				return ResponseEntity.badRequest().build();
 			}
-		}
-		else {
-			return ResponseEntity.status(401).build();
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
+			return ResponseEntity.badRequest().build();
 		}
 	}
 

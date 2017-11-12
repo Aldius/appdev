@@ -1,0 +1,25 @@
+<div class="page-body">
+  <h2 class="mat-h2 text-center">My advertisements!</h2>
+  <div *ngFor="let ad of ads" class="vertical-center">
+    <mat-card>
+      <mat-card-header>
+        <img mat-card-avatar src="https://staticcdn.selio.com/adoos-static/img/user_default.png">
+        <mat-card-title>{{ad.title}}</mat-card-title>
+        <mat-card-subtitle>{{ad.advertiser.fullName != "" ? ad.advertiser.fullName : ad.advertiser.username}}, {{adtext(ad)}}</mat-card-subtitle>
+      </mat-card-header>
+      <img class="img-responsive" *ngIf="notBuying(ad)" mat-card-image src="{{ad.picture_path}}" alt="Photo of the advertisement">
+      <mat-card-content>
+        <h3 class="mat-h3">Description</h3>
+        <p>
+          {{ad.description}}
+        </p>
+      </mat-card-content>
+      <div class="vertical-center">
+        <mat-card-actions>
+          <button mat-raised-button class="mat-primary">EDIT</button>
+          <button mat-raised-button (click)="delete(ad)" class="mat-accent">DELETE</button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+</div>
