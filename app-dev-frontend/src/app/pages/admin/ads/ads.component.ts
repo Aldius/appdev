@@ -7,6 +7,7 @@ import {MatDialog, MatDialogRef, MatPaginator, MatSort, MatTableDataSource} from
 import {DataSource} from "@angular/cdk/collections";
 import {Observable} from "rxjs/Observable";
 import {ChangeStatusComponent} from "../change-status/change-status.component";
+import {ViewAdComponent} from "../view-ad/view-ad.component";
 
 @Component({
   selector: 'app-ads',
@@ -32,6 +33,8 @@ export class AdsComponent implements OnInit {
   {
     this.adsService.getAdsForAdmin().subscribe( res => {
       this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       this.detectorRef.detectChanges();
     })
   }
@@ -51,6 +54,12 @@ export class AdsComponent implements OnInit {
 
     statusDialogRef.afterClosed().subscribe(result => {
       this.refresh();
+    });
+  }
+
+  viewAd(ad: Ad): void {
+    let viewAdDialogRef = this.dialog.open(ViewAdComponent, {
+      data: ad
     });
   }
 

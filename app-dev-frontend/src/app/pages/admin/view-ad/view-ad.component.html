@@ -1,0 +1,24 @@
+<div class="dialog-body">
+  <h2 mat-dialog-title class="text-center">View of ad!</h2>
+  <div>
+    <mat-dialog-content>
+        <mat-card-header>
+          <img mat-card-avatar src="https://staticcdn.selio.com/adoos-static/img/user_default.png">
+          <mat-card-title>{{data.title}}</mat-card-title>
+          <mat-card-subtitle>{{data.advertiser.fullName != "" ? data.advertiser.fullName : data.advertiser.username}}, {{adtext(data)}}</mat-card-subtitle>
+        </mat-card-header>
+        <img class="img-responsive" *ngIf="notBuying(data)" mat-card-image src="{{data.picture_path}}" alt="Photo of the advertisement">
+        <mat-card-content>
+          <h3 class="mat-h3">Description</h3>
+          <p>
+            {{data.description}}
+          </p>
+        </mat-card-content>
+    </mat-dialog-content>
+    <div class="vertical-center">
+      <mat-dialog-actions>
+        <button mat-button class="mat-primary" mat-dialog-close>Close</button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

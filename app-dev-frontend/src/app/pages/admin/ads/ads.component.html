@@ -32,7 +32,7 @@
         <mat-cell *matCellDef="let row">
           <a (click)="delete(row)"><i class="material-icons" matTooltip="Delete ad" matTooltipPosition="above">delete</i></a>
           <a (click)="changeStatus(row)"><i class="material-icons" matTooltip="Edit status" matTooltipPosition="above">mode_edit</i></a>
-          <a><i class="material-icons" matTooltip="View ad" matTooltipPosition="above">open_in_new</i></a>
+          <a (click)="viewAd(row)"><i class="material-icons" matTooltip="View ad" matTooltipPosition="above">open_in_new</i></a>
         </mat-cell>
       </ng-container>
 
