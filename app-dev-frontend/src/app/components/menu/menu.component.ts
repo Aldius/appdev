@@ -24,7 +24,9 @@ export class MenuComponent implements OnInit {
   ];
 
   private admin: MenuItem[] = [
-    {link: '/admin', title: 'Admin'}
+    {link: '/admin/ads', title: 'Manage advertisements'},
+    {link: 'admin/reports', title: 'Manage reports'},
+    {link: 'admin/users', title: 'Manage users'}
   ]
 
   constructor(private authService: AuthService) {

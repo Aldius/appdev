@@ -11,9 +11,6 @@
         <button mat-menu-item  *ngFor="let menu of ads" [routerLink]="menu.link" routerLinkActive="active">{{menu.title}}</button>
       </mat-menu>
     </span>
-    <span *ngIf="authService.isAdmin">
-      <a mat-button *ngFor="let menu of admin" [routerLink]="menu.link" routerLinkActive="active">{{menu.title}}</a>
-    </span>
   </div>
 
   <div class="right-side">
@@ -24,6 +21,12 @@
     </div>
 
     <div *ngIf="authService.isLoggedIn" class="authorized">
+      <span *ngIf="authService.isAdmin">
+        <button mat-button [matMenuTriggerFor]="adminMenu">Admin <i class="material-icons">expand_more</i></button>
+        <mat-menu #adminMenu="matMenu">
+          <button mat-menu-item  *ngFor="let menu of admin" [routerLink]="menu.link" routerLinkActive="active">{{menu.title}}</button>
+        </mat-menu>
+      </span>
       <a mat-button routerLink="/profile" routerLinkActive="active">Profile</a>
       <button mat-button (click)="logout()">Logout</button>
     </div>

@@ -28,8 +28,4 @@ export class Ad  {
     this.status = status;
     this.description = description;
   }
-
-  get clone(): Ad {
-    return new Ad(this.advertiser, this.title, this.picture_path, this.adType, this.status, this.description);
-  }
 }
