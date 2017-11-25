@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
   });
 
+  incorrect_username: boolean;
+
   constructor(private authService: AuthService) {
   }
 
@@ -24,8 +26,8 @@ export class RegisterComponent implements OnInit {
   submit() {
     this.authService.register(new User(this.username.value, this.password.value, this.email.value))
       .subscribe(
-        res => console.log(res),
-        err => console.log(err))
+        res => this.incorrect_username = false,
+        err => this.incorrect_username = true)
   }
 
   get username(): AbstractControl {

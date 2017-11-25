@@ -30,7 +30,11 @@
         </mat-error>
       </mat-form-field>
     </div>
-
+    <div class="error">
+      <mat-error *ngIf="this.incorrect_username">
+        Username is already in use!
+      </mat-error>
+    </div>
     <button mat-raised-button class="mat-primary" (click)="submit()" [disabled]="!registerForm.valid">Register</button>
     <a mat-button class="mat-accent" routerLink="/login">Login</a>
   </form>

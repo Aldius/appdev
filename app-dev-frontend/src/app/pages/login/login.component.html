@@ -10,7 +10,6 @@
           </mat-error>
         </mat-form-field>
       </div>
-
       <div>
         <mat-form-field>
           <input matInput placeholder="Password" formControlName="password" type="password">
@@ -18,6 +17,11 @@
             Password is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+      </div>
+      <div class="error">
+        <mat-error *ngIf="login_failed">
+          Username or password is incorrect!
+        </mat-error>
       </div>
       <button mat-raised-button class="mat-primary" (click)="submit()" [disabled]="!loginForm.valid">Login</button>
       <a mat-button class="mat-accent" routerLink="/register">Register</a>

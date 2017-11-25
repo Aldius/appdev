@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/User";
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../services/auth.service";
-import {MenuComponent} from "../../components/menu/menu.component";
 
 @Component({
   selector: 'app-login',
@@ -15,6 +14,8 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
+  login_failed: boolean;
+
   constructor(private loginService: AuthService) {
   }
 
@@ -24,10 +25,8 @@ export class LoginComponent implements OnInit {
   submit() {
     this.loginService.login(new User(this.username.value, this.password.value))
       .subscribe(
-        res =>{
-          console.log(this.loginService.user);
-        },
-        err => console.log(err))
+        res => this.login_failed = false,
+        err => this.login_failed = true)
   }
 
   get username(): AbstractControl {

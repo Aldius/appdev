@@ -7,6 +7,8 @@ import {NewAdComponent} from "./pages/ad/new-ad/new-ad.component";
 import {ProfileComponent} from "./pages/profile/profile.component";
 import {MyAdsComponent} from "./pages/ad/my-ads/my-ads.component";
 import {AdsComponent} from "./pages/admin/ads/ads.component";
+import {ReportsComponent} from "./pages/admin/reports/reports.component";
+import {UsersComponent} from "./pages/admin/users/users.component";
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -17,5 +19,7 @@ export const appRoutes: Routes = [
   {path: 'ad/new', component: NewAdComponent},
   {path: 'ad/own', component: MyAdsComponent},
   {path: 'admin/ads', component: AdsComponent},
+  {path: 'admin/reports', component: ReportsComponent},
+  {path: 'admin/users', component: UsersComponent},
   {path: '**', component: ErrorComponent}
 ];

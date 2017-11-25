@@ -26,6 +26,8 @@ import { EditAdComponent } from './pages/ad/edit-ad/edit-ad.component';
 import { AdsComponent } from './pages/admin/ads/ads.component';
 import { ChangeStatusComponent } from './pages/admin/change-status/change-status.component';
 import { ViewAdComponent } from './pages/admin/view-ad/view-ad.component';
+import { ReportsComponent } from './pages/admin/reports/reports.component';
+import { UsersComponent } from './pages/admin/users/users.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { ViewAdComponent } from './pages/admin/view-ad/view-ad.component';
     AdsComponent,
     ChangeStatusComponent,
     ViewAdComponent,
+    ReportsComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

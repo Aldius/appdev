@@ -43,6 +43,8 @@ public class UserService {
 		return user != null;
 	}
 
+	public Iterable<User> getUsers() { return userRepository.findAll(); }
+
 	public User register(User user) throws AlreadyRegisteredException {
 		if (userRepository.findByUsername(user.getUsername()).isPresent() || userRepository.findByEmail(user.getEmail()).isPresent()) {
 			throw new AlreadyRegisteredException();

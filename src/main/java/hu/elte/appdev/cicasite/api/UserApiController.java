@@ -31,6 +31,21 @@ public class UserApiController {
 		}
 	}
 
+	@GetMapping("/all")
+	public ResponseEntity<Iterable<User>> getUsers()
+	{
+		try{
+			if (userService.getUser().getRole().equals(ADMIN))
+			{
+				return ResponseEntity.ok(userService.getUsers());
+			} else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception exp) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 	@PostMapping("/login")
 	public ResponseEntity<User> login(@RequestBody User user) {
 		try {

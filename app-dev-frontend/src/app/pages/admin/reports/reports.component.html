@@ -1,0 +1,45 @@
+<div class="page-body">
+  <div>
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.user.fullName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="username">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.user.username}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="reported_by">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Reported by </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.reported_by.fullName}} ({{row.reported_by.username}}) </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="reason">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Reason </mat-header-cell>
+        <mat-cell *matCellDef="let row" > {{row.reason}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef> Manage </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <a><i class="material-icons" matTooltip="Delete user" matTooltipPosition="above">delete</i></a>
+          <a><i class="material-icons" matTooltip="Warn user" matTooltipPosition="above">mode_edit</i></a>
+          <a><i class="material-icons" matTooltip="View user ads" matTooltipPosition="above">open_in_new</i></a>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</div>
