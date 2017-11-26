@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: AuthService, private detectorRef: ChangeDetectorRef,
+  constructor(private userService: AuthService,
               private dialog: MatDialog, private router: Router, private _flashMessagesService: FlashMessagesService) { }
 
   ngOnInit() {

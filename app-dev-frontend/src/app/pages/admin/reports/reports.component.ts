@@ -22,8 +22,7 @@ export class ReportsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: AuthService, private reportService: ReportService,
-              private detectorRef: ChangeDetectorRef, private dialog: MatDialog, private router: Router) { }
+  constructor(private userService: AuthService, private reportService: ReportService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     if(!this.userService.isLoggedIn)
@@ -39,7 +38,6 @@ export class ReportsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.detectorRef.detectChanges();
     })
   }
 

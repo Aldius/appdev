@@ -24,8 +24,7 @@ export class AdsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private userService: AuthService, private adsService: AdsService, private _flashMessagesService: FlashMessagesService,
-              private detectorRef: ChangeDetectorRef, private dialog: MatDialog, private router: Router) { }
+  constructor(private userService: AuthService, private adsService: AdsService, private _flashMessagesService: FlashMessagesService, private dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
     if(!this.userService.isLoggedIn)
@@ -41,7 +40,6 @@ export class AdsComponent implements OnInit {
       this.dataSource = new MatTableDataSource(res);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.detectorRef.detectChanges();
     })
   }
 
