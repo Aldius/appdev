@@ -24,6 +24,12 @@ export class MenuComponent implements OnInit {
     {link: '/ad/own', title: 'My advertisements'},
   ];
 
+  private messages: MenuItem[] = [
+    {link: '/message', title: 'New message'},
+    {link: '/message/sent', title: 'Sent messages'},
+    {link: '/message/got', title: 'Got messages'}
+  ];
+
   private admin: MenuItem[] = [
     {link: '/admin/ads', title: 'Manage advertisements'},
     {link: 'admin/reports', title: 'Manage reports'},
