@@ -40,3 +40,43 @@ body {
 .error {
   margin: 5px;
 }
+
+.success
+{
+  opacity: 0.92;
+  color: #3c763d;
+  background-color: #dff0d8;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: auto;
+  width: auto;
+  padding: 10px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -65px;
+  position: absolute;
+}
+
+.flash-error
+{
+  opacity: 0.92;
+  color: #aa3939;
+  background-color: #ffaaaa;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: auto;
+  width: auto;
+  padding: 10px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  z-index: 15;
+  top: 50%;
+  left: 50%;
+  margin: -35px 0 0 -65px;
+  position: absolute;
+}

@@ -12,13 +12,21 @@ export class AuthService {
   isAdmin: boolean = false;
 
   constructor(private http: Http) {
-    this.user = new User();
+    this.refresh();
+  }
+
+  refresh()
+  {
+    this.getUser().subscribe(res => {
+      this.isLoggedIn = true;
+      this.user = res;
+      this.isAdmin = this.user.role == Role.ADMIN;
+    });
   }
 
   login(user: User) {
     return this.http.post(Server.routeTo(Routes.LOGIN), user)
       .map(res => {
-        if(res.status == 400) return null;
         this.isLoggedIn = true;
         this.user = res.json();
         this.isAdmin = this.user.role == Role.ADMIN;
@@ -29,7 +37,6 @@ export class AuthService {
   register(user: User) {
     return this.http.post(Server.routeTo(Routes.REGISTER), user)
       .map(res => {
-        if(res.status == 400) return null;
         this.isLoggedIn = true;
         this.user = res.json();
         return this.user;
@@ -49,9 +56,7 @@ export class AuthService {
   modify(user: User) {
     return this.http.post(Server.routeTo(Routes.MODIFY_USER), user)
       .map(res => {
-        this.user = res.json();
-        this.isAdmin = this.user.role == Role.ADMIN;
-        return this.user;
+        this.refresh();
       })
   }
 
@@ -59,9 +64,12 @@ export class AuthService {
   {
     return this.http.post(Server.routeTo(Routes.DELETE_USER), user)
       .map(res => {
-        this.user = null;
-        this.isAdmin = false;
-        this.isLoggedIn = false;
+        if (this.user.username == user.username)
+        {
+          this.user = null;
+          this.isLoggedIn = false;
+          this.isAdmin = false;
+        }
       })
   }
 
@@ -70,5 +78,12 @@ export class AuthService {
     return this.http.get(Server.routeTo(Routes.ADMIN_USERS)).map(response => {
       return response.json();
     });
+  }
+
+  getUser()
+  {
+    return this.http.get(Server.routeTo(Routes.CURRENT_USER)).map(response => {
+      return response.json();
+    })
   }
 }

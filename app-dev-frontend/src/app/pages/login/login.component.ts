@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {User} from "../../model/User";
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from "../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   login_failed: boolean;
 
-  constructor(private loginService: AuthService) {
+  constructor(private loginService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -25,7 +26,10 @@ export class LoginComponent implements OnInit {
   submit() {
     this.loginService.login(new User(this.username.value, this.password.value))
       .subscribe(
-        res => this.login_failed = false,
+        res =>{
+          this.login_failed = false;
+          this.router.navigate(['/profile']);
+        },
         err => this.login_failed = true)
   }
 

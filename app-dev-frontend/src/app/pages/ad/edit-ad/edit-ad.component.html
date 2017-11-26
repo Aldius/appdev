@@ -31,7 +31,7 @@
   <mat-dialog-actions>
       <div class="vertical-center">
         <button mat-raised-button class="mat-primary" (click)="submit()" [disabled]="!adValid()">Save</button>
-        <button mat-button mat-dialog-close class="mat-accent">Back</button>
+        <button mat-button (click)="close()"  class="mat-accent">Discard</button>
       </div>
   </mat-dialog-actions>
 </div>

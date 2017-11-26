@@ -1,4 +1,5 @@
 export class Routes {
+  static CURRENT_USER: String = 'user';
   static LOGIN: String = 'user/login';
   static REGISTER: String = 'user/register';
   static LOGOUT: String = 'user/logout';

@@ -2,6 +2,7 @@ import {Component, Inject, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {Ad, ADTYPE} from "../../../model/Ad";
 import {AdsService} from "../../../services/ads.service";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
   selector: 'app-edit-ad',
@@ -12,7 +13,7 @@ import {AdsService} from "../../../services/ads.service";
 export class EditAdComponent{
 
 
-  constructor(private adService: AdsService,public dialogRef: MatDialogRef<EditAdComponent>, @Inject(MAT_DIALOG_DATA) public data: Ad) {  }
+  constructor(private adService: AdsService,public dialogRef: MatDialogRef<EditAdComponent>, @Inject(MAT_DIALOG_DATA) public data: Ad, private _flashMessagesService: FlashMessagesService) {  }
 
   notBuying()
   {
@@ -22,9 +23,15 @@ export class EditAdComponent{
   submit()
   {
     this.adService.modifyAd(this.data).subscribe(
-      res => console.log(res)
+      res => this._flashMessagesService.show('Saved successfully', { timeout: 2000, cssClass: 'success' })
     )
-    this.dialogRef.close(true);
+    this.dialogRef.close();
+  }
+
+  close()
+  {
+    this._flashMessagesService.show('Changes discarded', { timeout: 2000, cssClass: 'flash-error' })
+    this.dialogRef.close();
   }
 
   adValid()

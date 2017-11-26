@@ -1,0 +1,13 @@
+<div class="dialog-body text-center">
+  <div>
+    <mat-dialog-content>
+      {{this.text}}
+    </mat-dialog-content>
+    <div class="vertical-center">
+      <mat-dialog-actions>
+        <button mat-raised-button class="mat-primary" (click)="submit()">Yes</button>
+        <button mat-raised-button class="mat-accent" (click)="close()">No</button>
+      </mat-dialog-actions>
+    </div>
+  </div>
+</div>

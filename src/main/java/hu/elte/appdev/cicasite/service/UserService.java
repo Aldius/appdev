@@ -59,7 +59,9 @@ public class UserService {
 	public void delete(User user) {
 		User toDelete = userRepository.findByUsername(user.getUsername()).get();
 		userRepository.delete(toDelete);
-		this.user = null;
+		if (this.user.getUsername().equals(user.getUsername())){
+			this.user = null;
+		}
 	}
 
 	public User modifyUser(User user) {

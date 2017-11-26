@@ -28,6 +28,8 @@ import { ChangeStatusComponent } from './pages/admin/change-status/change-status
 import { ViewAdComponent } from './pages/admin/view-ad/view-ad.component';
 import { ReportsComponent } from './pages/admin/reports/reports.component';
 import { UsersComponent } from './pages/admin/users/users.component';
+import {FlashMessagesModule} from "angular2-flash-messages";
+import { ConfirmationPanelComponent } from './components/confirmation-panel/confirmation-panel.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +50,7 @@ import { UsersComponent } from './pages/admin/users/users.component';
     ViewAdComponent,
     ReportsComponent,
     UsersComponent,
+    ConfirmationPanelComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,14 +59,16 @@ import { UsersComponent } from './pages/admin/users/users.component';
     RouterModule.forRoot(appRoutes),
     MaterialItemsModule,
     HttpModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FlashMessagesModule.forRoot()
   ],
   entryComponents: [
     ReportComponent,
     ContactComponent,
     EditAdComponent,
     ChangeStatusComponent,
-    ViewAdComponent
+    ViewAdComponent,
+    ConfirmationPanelComponent
   ],
   providers: [
     AuthService,

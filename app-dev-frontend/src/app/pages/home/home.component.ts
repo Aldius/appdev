@@ -27,20 +27,12 @@ export class HomeComponent implements OnInit {
         reported_by: this.authService.user
       }
     });
-
-    reportDialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   contact(user: User): void {
     let contactDialogRef = this.dialog.open(ContactComponent, {
       data: user
     })
-
-    contactDialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
   }
 
   ngOnInit() {

@@ -8,6 +8,8 @@ import {DataSource} from "@angular/cdk/collections";
 import {Observable} from "rxjs/Observable";
 import {ChangeStatusComponent} from "../change-status/change-status.component";
 import {ViewAdComponent} from "../view-ad/view-ad.component";
+import {Router} from "@angular/router";
+import {FlashMessagesService} from "angular2-flash-messages";
 
 @Component({
   selector: 'app-ads',
@@ -22,10 +24,14 @@ export class AdsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private adsService: AdsService, private detectorRef: ChangeDetectorRef, private dialog: MatDialog) {}
+  constructor(private userService: AuthService, private adsService: AdsService, private _flashMessagesService: FlashMessagesService,
+              private detectorRef: ChangeDetectorRef, private dialog: MatDialog, private router: Router) { }
 
-  ngOnInit()
-  {
+  ngOnInit() {
+    if(!this.userService.isLoggedIn)
+    {
+      this.router.navigate(['/login']);
+    }
     this.refresh();
   }
 
@@ -42,7 +48,7 @@ export class AdsComponent implements OnInit {
   delete(ad: Ad)
   {
     this.adsService.deleteAd(ad).subscribe( res => {
-      console.log(res);
+      this._flashMessagesService.show('Deleted successfully', { timeout: 2000, cssClass: 'flash-error' })
       this.refresh();
     })
   }
@@ -53,6 +59,7 @@ export class AdsComponent implements OnInit {
     });
 
     statusDialogRef.afterClosed().subscribe(result => {
+      this._flashMessagesService.show('Status changed', { timeout: 2000, cssClass: 'success' })
       this.refresh();
     });
   }
@@ -72,21 +79,5 @@ export class AdsComponent implements OnInit {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
-  }
-}
-
-export class AdDataSource extends DataSource<any> {
-
-  constructor(private adsService: AdsService) {
-    super();
-  }
-
-  connect(): Observable<any> {
-    return Observable.of(this.adsService.getAdsForAdmin());
-  }
-
-
-  disconnect() {
-    // No-op
   }
 }

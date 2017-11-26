@@ -4,6 +4,8 @@ import {AuthService} from "../../../services/auth.service";
 import {AdsService} from "../../../services/ads.service";
 import {EditAdComponent} from "../edit-ad/edit-ad.component";
 import {MatDialog} from "@angular/material";
+import {FlashMessagesService} from "angular2-flash-messages";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-my-ads',
@@ -15,14 +17,19 @@ export class MyAdsComponent implements OnInit {
 
   ads: Ad[];
 
-  constructor(private authService: AuthService, private adsService: AdsService, public dialog: MatDialog) { }
+  constructor(private authService: AuthService, private adsService: AdsService,
+              public dialog: MatDialog, private _flashMessagesService: FlashMessagesService, private router: Router) { }
 
   ngOnInit() {
     if(!this.authService.isLoggedIn)
     {
-      location.assign('login');
+      this.router.navigate(['/login']);
     }
 
+    this.refresh();
+  }
+
+  refresh() {
     this.adsService.getAdsByUser(this.authService.user).subscribe(res =>{
       this.ads = res;
       console.log(this.ads);
@@ -37,7 +44,7 @@ export class MyAdsComponent implements OnInit {
       {
         this.ads.splice(index, 1);
       }
-      console.log(res);
+      this._flashMessagesService.show('Deleted successfully', { timeout: 2000, cssClass: 'success' })
     })
   }
 
@@ -46,11 +53,7 @@ export class MyAdsComponent implements OnInit {
       data: ad
     });
 
-    modifyDialogRef.afterClosed().subscribe(data => {
-      if(!data) {
-        console.log("No change detected")
-      }
-    });
+    modifyDialogRef.afterClosed().subscribe(res => this.refresh());
   }
 
   notBuying(ad: Ad)

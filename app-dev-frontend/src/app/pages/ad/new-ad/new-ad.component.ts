@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Ad, ADTYPE, STATUS} from "../../../model/Ad";
 import {AdsService} from "../../../services/ads.service";
 import {AuthService} from "../../../services/auth.service";
+import {FlashMessagesService} from "angular2-flash-messages";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-ad',
@@ -19,13 +21,13 @@ export class NewAdComponent implements OnInit {
     description: new FormControl('', [Validators.required])
   });
 
-  constructor(private adService: AdsService, private authService: AuthService) {
-  }
+  constructor(private adService: AdsService, private authService: AuthService,
+              private _flashMessagesService: FlashMessagesService, private router: Router) { }
 
   ngOnInit() {
     if(!this.authService.isLoggedIn)
     {
-      location.assign('login');
+      this.router.navigate(['/login']);
     }
   }
 
@@ -49,10 +51,9 @@ export class NewAdComponent implements OnInit {
     this.adService.newAd(new Ad(this.authService.user, this.title.value, this.picture_path.value, this.adtype.value, null, this.description.value))
       .subscribe(
         res =>{
-          console.log(res);
-        },
-        err => console.log(err)
-      )
+          this.router.navigate(['/ad/own']);
+          this._flashMessagesService.show('Added successfully', { timeout: 2000, cssClass: 'success' })
+        })
   }
 
 }

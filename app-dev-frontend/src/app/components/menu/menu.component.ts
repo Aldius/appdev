@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Role} from "../../model/User";
 import {AuthService} from "../../services/auth.service";
 import {ActivatedRoute} from "@angular/router/";
+import {Router} from "@angular/router";
 
 interface MenuItem {
   link: String;
@@ -29,7 +30,7 @@ export class MenuComponent implements OnInit {
     {link: 'admin/users', title: 'Manage users'}
   ]
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
@@ -38,7 +39,7 @@ export class MenuComponent implements OnInit {
   logout() {
     this.authService.logout().subscribe(
       res => {
-        console.log(res);
+        this.router.navigate(['/home']);
       })
   }
 }

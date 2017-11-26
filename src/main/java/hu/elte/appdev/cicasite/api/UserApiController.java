@@ -27,7 +27,7 @@ public class UserApiController {
 			return ResponseEntity.ok(userService.getUser());
 		}
 		else {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(400).build();
 		}
 	}
 

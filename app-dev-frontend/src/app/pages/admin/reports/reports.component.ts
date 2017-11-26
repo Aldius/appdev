@@ -6,6 +6,8 @@ import {ViewAdComponent} from "../view-ad/view-ad.component";
 import {Ad} from "../../../model/Ad";
 import {DataSource} from "@angular/cdk/collections";
 import {Observable} from "rxjs/Observable";
+import {AuthService} from "../../../services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-reports',
@@ -20,10 +22,14 @@ export class ReportsComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private reportService: ReportService, private detectorRef: ChangeDetectorRef, private dialog: MatDialog) {}
+  constructor(private userService: AuthService, private reportService: ReportService,
+              private detectorRef: ChangeDetectorRef, private dialog: MatDialog, private router: Router) { }
 
-  ngOnInit()
-  {
+  ngOnInit() {
+    if(!this.userService.isLoggedIn)
+    {
+      this.router.navigate(['/login']);
+    }
     this.refresh();
   }
 
