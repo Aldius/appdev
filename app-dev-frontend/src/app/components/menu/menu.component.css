@@ -10,3 +10,25 @@ mat-toolbar {
 .center {
   flex: 1 1 auto;
 }
+
+#side-menu {
+  padding: 5px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  display: none;
+}
+
+@media (max-width: 740px)
+{
+  #top-menu {
+    display: none;
+  }
+
+  #side-menu {
+    display: flex;
+  }
+}
+
+.side-nav {
+  width: 180px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}

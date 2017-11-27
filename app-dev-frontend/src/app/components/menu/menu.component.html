@@ -32,8 +32,41 @@
           <button mat-menu-item  *ngFor="let menu of admin" [routerLink]="menu.link" routerLinkActive="active">{{menu.title}}</button>
         </mat-menu>
       </span>
-      <a mat-button routerLink="/profile" routerLinkActive="active">Profile</a>
+      <button mat-button routerLink="/profile" routerLinkActive="active">Profile</button>
       <button mat-button (click)="logout()">Logout</button>
     </div>
   </div>
+</mat-toolbar>
+
+<mat-sidenav position="start" #sidenav class="side-nav">
+  <a mat-button *ngFor="let menu of common" [routerLink]="menu.link" (click)="sidenav.close()" routerLinkActive="active">{{menu.title}}</a>
+  <span *ngIf="authService.isLoggedIn">
+    <a mat-button [matMenuTriggerFor]="adsMenu">Advertisement <i class="material-icons">expand_more</i></a>
+    <mat-menu #adsMenu="matMenu">
+      <a mat-menu-item  *ngFor="let menu of ads" [routerLink]="menu.link" (click)="sidenav.close()" routerLinkActive="active">{{menu.title}}</a>
+    </mat-menu>
+    <a mat-button [matMenuTriggerFor]="messagesMenu">Message <i class="material-icons">expand_more</i></a>
+    <mat-menu #messagesMenu="matMenu">
+      <a mat-menu-item  *ngFor="let menu of messages" [routerLink]="menu.link" (click)="sidenav.close()" routerLinkActive="active">{{menu.title}}</a>
+    </mat-menu>
+  </span>
+  <span *ngIf="!authService.isLoggedIn">
+    <a mat-button routerLink="/login" routerLinkActive="active" (click)="sidenav.close()">Login</a>
+    <a mat-button routerLink="/register" routerLinkActive="active" (click)="sidenav.close()">Register</a>
+  </span>
+  <span *ngIf="authService.isLoggedIn">
+      <span *ngIf="authService.isAdmin">
+        <a mat-button [matMenuTriggerFor]="adminMenu">Admin <i class="material-icons">expand_more</i></a>
+        <mat-menu #adminMenu="matMenu">
+          <a mat-menu-item  *ngFor="let menu of admin" [routerLink]="menu.link" (click)="sidenav.close()" routerLinkActive="active">{{menu.title}}</a>
+        </mat-menu>
+      </span>
+    <a mat-button routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a mat-button (click)="logout()">Logout</a>
+  </span>
+</mat-sidenav>
+<mat-toolbar color="primary" id="side-menu">
+  <button type="button" mat-button (click)="sidenav.toggle()">
+    <i class="material-icons">reorder</i>
+  </button>
 </mat-toolbar>
