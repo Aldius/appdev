@@ -14,6 +14,10 @@ export class Routes {
   static AD_STATUS: String = 'ad/setstatus';
   static ADMIN_USERS: String = 'user/all';
   static REPORT: String = 'reports';
+  static GOT_MESSAGE: String = 'messages/incoming';
+  static SENT_MESSAGE: String = 'messages/outgoing';
+  static NEW_MESSAGE: String = 'messages/send';
+  static USERNAMES: String = 'user/users'
 }
 
 export class Server {

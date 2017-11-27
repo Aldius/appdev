@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.web.context.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import static hu.elte.appdev.cicasite.model.entities.User.Role.*;
 
 @Service
@@ -41,6 +45,20 @@ public class UserService {
 
 	public boolean isLoggedIn() {
 		return user != null;
+	}
+
+	public Iterable<String> getUsernames() {
+		Iterable<User> users = userRepository.findAll();
+		Iterator<User> iterator = users.iterator();
+
+		List<String> good = new ArrayList<>();
+		while(iterator.hasNext())
+		{
+			User currentUser = iterator.next();
+			good.add(currentUser.getUsername());
+		}
+
+		return good;
 	}
 
 	public Iterable<User> getUsers() { return userRepository.findAll(); }

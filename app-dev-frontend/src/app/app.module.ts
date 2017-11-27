@@ -30,6 +30,10 @@ import { ReportsComponent } from './pages/admin/reports/reports.component';
 import { UsersComponent } from './pages/admin/users/users.component';
 import {FlashMessagesModule} from "angular2-flash-messages";
 import { ConfirmationPanelComponent } from './components/confirmation-panel/confirmation-panel.component';
+import {GotMessageComponent} from './pages/messages/got/got.component';
+import {SentMessageComponent} from './pages/messages/sent/sent.component';
+import {NewMessageComponent} from './pages/messages/new/new.component';
+import {MessagesService} from "./services/messages.service";
 
 @NgModule({
   declarations: [
@@ -51,6 +55,9 @@ import { ConfirmationPanelComponent } from './components/confirmation-panel/conf
     ReportsComponent,
     UsersComponent,
     ConfirmationPanelComponent,
+    GotMessageComponent,
+    SentMessageComponent,
+    NewMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +80,8 @@ import { ConfirmationPanelComponent } from './components/confirmation-panel/conf
   providers: [
     AuthService,
     AdsService,
-    ReportService
+    ReportService,
+    MessagesService
   ],
   bootstrap: [AppComponent]
 })

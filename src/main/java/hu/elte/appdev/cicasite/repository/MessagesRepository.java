@@ -9,6 +9,6 @@ public interface MessagesRepository extends CrudRepository<Message, Integer> {
 
 	Iterable<Message> findByUser(User user);
 
-	Iterable<Message> findByFrom(User user);
+	Iterable<Message> findByFrom(User from);
 
 }

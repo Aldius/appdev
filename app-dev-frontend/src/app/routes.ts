@@ -9,6 +9,9 @@ import {MyAdsComponent} from "./pages/ad/my-ads/my-ads.component";
 import {AdsComponent} from "./pages/admin/ads/ads.component";
 import {ReportsComponent} from "./pages/admin/reports/reports.component";
 import {UsersComponent} from "./pages/admin/users/users.component";
+import {NewMessageComponent} from "./pages/messages/new/new.component";
+import {GotMessageComponent} from "./pages/messages/got/got.component";
+import {SentMessageComponent} from "./pages/messages/sent/sent.component";
 
 export const appRoutes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,5 +24,8 @@ export const appRoutes: Routes = [
   {path: 'admin/ads', component: AdsComponent},
   {path: 'admin/reports', component: ReportsComponent},
   {path: 'admin/users', component: UsersComponent},
+  {path: 'message', component: NewMessageComponent},
+  {path: 'message/got', component: GotMessageComponent},
+  {path: 'message/sent', component: SentMessageComponent},
   {path: '**', component: ErrorComponent}
 ];

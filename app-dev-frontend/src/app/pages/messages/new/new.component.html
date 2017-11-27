@@ -1,0 +1,29 @@
+<div class="page-body text-center" id="new-ad">
+  <div class="vertical-center">
+    <mat-card>
+      <mat-card-header class="mat-h2">New message</mat-card-header>
+      <form [formGroup]="messageForm" novalidate class="form-group">
+        <div class="form-control">
+          <mat-form-field class="form-field">
+            <mat-select placeholder="Select user" formControlName="user" required>
+              <mat-option *ngFor="let row of users" value="{{row}}">{{row}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="form-control">
+          <mat-form-field class="form-field">
+            <textarea matInput placeholder="Text" formControlName="text"></textarea>
+            <mat-error *ngIf="text.hasError('required')">
+              Text is <strong>required</strong>
+            </mat-error>
+            <mat-error *ngIf="text.hasError('maxlength')">
+              Maximum length is <strong>200</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button class="mat-primary" (click)="submit()" [disabled]="!messageForm.valid">Send</button>
+        <a mat-button class="mat-accent" routerLink="/home">Back</a>
+      </form>
+    </mat-card>
+  </div>
+</div>

@@ -5,7 +5,6 @@ import lombok.*;
 
 import javax.persistence.*;
 
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,10 +13,10 @@ import javax.persistence.*;
 @Table(name = "MESSAGES")
 public class Message extends BaseEntity {
 
-	@ManyToOne private User user;
+	@ManyToOne(targetEntity = User.class) private User user;
 
-	@ManyToOne private User from;
+	@ManyToOne(targetEntity = User.class) private User from;
 
+	@Column
 	private String message;
-
 }

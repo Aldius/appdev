@@ -23,30 +23,46 @@ public class MessagesApiController {
 
 	@GetMapping("/incoming")
 	public ResponseEntity<Iterable<Message>> getMessages() {
-		if (userService.isLoggedIn()) {
-			return ResponseEntity.ok(messagesService.getMessages(userService.getUser()));
-		}
-		else {
+		try {
+			if (userService.isLoggedIn()) {
+				return ResponseEntity.ok(messagesService.getMessages(userService.getUser()));
+			} else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
 			return ResponseEntity.badRequest().build();
 		}
 	}
 
 	@GetMapping("/outgoing")
 	public ResponseEntity<Iterable<Message>> getMessagesSent() {
-		if (userService.isLoggedIn()) {
-			return ResponseEntity.ok(messagesService.getMessagesSent(userService.getUser()));
-		}
-		else {
+		try{
+			if (userService.isLoggedIn()) {
+				return ResponseEntity.ok(messagesService.getMessagesSent(userService.getUser()));
+			}
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
 			return ResponseEntity.badRequest().build();
 		}
 	}
 
 	@PostMapping("/send")
 	public ResponseEntity<Message> sendMessage(@RequestBody Message message) {
-		if (userService.isLoggedIn()) {
-			return ResponseEntity.ok(messagesService.sendMessage(message));
-		}
-		else {
+		try{
+			if (userService.isLoggedIn()) {
+				message.setFrom(userService.getUserRepository().findByUsernameAndPassword(message.getFrom().getUsername(),message.getFrom().getPassword()).get());
+				message.setUser(userService.getUserRepository().findByUsername(message.getUser().getUsername()).get());
+				return ResponseEntity.ok(messagesService.sendMessage(message));
+			}
+			else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception e)
+		{
 			return ResponseEntity.badRequest().build();
 		}
 	}

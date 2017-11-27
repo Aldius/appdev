@@ -46,6 +46,22 @@ public class UserApiController {
 		}
 	}
 
+
+	@GetMapping("/users")
+	public ResponseEntity<Iterable<String>> getUsernames()
+	{
+		try{
+			if (userService.isLoggedIn())
+			{
+				return ResponseEntity.ok(userService.getUsernames());
+			} else {
+				return ResponseEntity.status(401).build();
+			}
+		} catch (Exception exp) {
+			return ResponseEntity.badRequest().build();
+		}
+	}
+
 	@PostMapping("/login")
 	public ResponseEntity<User> login(@RequestBody User user) {
 		try {

@@ -31,7 +31,7 @@ public class User extends BaseEntity {
 
 	@JsonIgnore
 	@JoinColumn(name = "ADVERTISER_ID")
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, orphanRemoval = true, targetEntity = Advertisement.class)
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, targetEntity = Advertisement.class)
 	private List<Advertisement> ads;
 
 	@JsonIgnore
@@ -46,12 +46,12 @@ public class User extends BaseEntity {
 
 	@JsonIgnore
 	@JoinColumn(name = "USER_ID")
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Message.class)
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, targetEntity = Message.class)
 	private List<Message> messages;
 
 	@JsonIgnore
 	@JoinColumn(name = "FROM_ID")
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, targetEntity = Message.class)
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true, targetEntity = Message.class)
 	private List<Message> messagesSent;
 
 	public enum Role {
