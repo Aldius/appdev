@@ -30,9 +30,8 @@
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef> Manage </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <a><i class="material-icons" matTooltip="Delete user" matTooltipPosition="above">delete</i></a>
-          <a><i class="material-icons" matTooltip="Warn user" matTooltipPosition="above">warning</i></a>
-          <a><i class="material-icons" matTooltip="View user ads" matTooltipPosition="above">view_headline</i></a>
+          <a (click)="deleteUser(row.user)"><i class="material-icons" matTooltip="Delete user" matTooltipPosition="above">delete</i></a>
+          <a (click)="sendWarning(row)"><i class="material-icons" matTooltip="Warn user" matTooltipPosition="above">warning</i></a>
         </mat-cell>
       </ng-container>
 

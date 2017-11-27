@@ -34,6 +34,7 @@ import {GotMessageComponent} from './pages/messages/got/got.component';
 import {SentMessageComponent} from './pages/messages/sent/sent.component';
 import {NewMessageComponent} from './pages/messages/new/new.component';
 import {MessagesService} from "./services/messages.service";
+import { MessageComponent } from './pages/message/message.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import {MessagesService} from "./services/messages.service";
     GotMessageComponent,
     SentMessageComponent,
     NewMessageComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ import {MessagesService} from "./services/messages.service";
     EditAdComponent,
     ChangeStatusComponent,
     ViewAdComponent,
-    ConfirmationPanelComponent
+    ConfirmationPanelComponent,
+    MessageComponent
   ],
   providers: [
     AuthService,

@@ -7,7 +7,7 @@
         <mat-card-title>{{ad.title}}</mat-card-title>
         <mat-card-subtitle>{{ad.advertiser.fullName != "" ? ad.advertiser.fullName : ad.advertiser.username}}, {{adtext(ad)}}, {{ad.status}}</mat-card-subtitle>
       </mat-card-header>
-      <img class="img-responsive" *ngIf="notBuying(ad)" mat-card-image src="{{ad.picture_path}}" alt="Photo of the advertisement">
+      <img class="img-responsive" *ngIf="ad.picture_path != ''" mat-card-image src="{{ad.picture_path}}" alt="Photo of the advertisement">
       <mat-card-content>
         <h3 class="mat-h3">Description</h3>
         <p>

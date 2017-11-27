@@ -46,7 +46,7 @@ export class AdsComponent implements OnInit {
   delete(ad: Ad)
   {
     this.adsService.deleteAd(ad).subscribe( res => {
-      this._flashMessagesService.show('Deleted successfully', { timeout: 2000, cssClass: 'flash-error' })
+      this._flashMessagesService.show('Deleted successfully', { timeout: 2000, cssClass: 'flash-error' });
       this.refresh();
     })
   }
@@ -57,7 +57,7 @@ export class AdsComponent implements OnInit {
     });
 
     statusDialogRef.afterClosed().subscribe(result => {
-      this._flashMessagesService.show('Status changed', { timeout: 2000, cssClass: 'success' })
+      if(result) this._flashMessagesService.show('Status changed', { timeout: 2000, cssClass: 'success' });
       this.refresh();
     });
   }

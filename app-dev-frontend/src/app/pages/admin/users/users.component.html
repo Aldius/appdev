@@ -36,8 +36,7 @@
         <mat-header-cell *matHeaderCellDef> Manage </mat-header-cell>
         <mat-cell *matCellDef="let row">
           <span *ngIf="row.role != 'ADMIN'"><a (click)="deleteUser(row)"><i class="material-icons" matTooltip="Delete user" matTooltipPosition="above">delete</i></a></span>
-          <a><i class="material-icons" matTooltip="Send message" matTooltipPosition="above">chat_bubble</i></a>
-          <span *ngIf="row.role != 'ADMIN'"><a><i class="material-icons" matTooltip="Change role" matTooltipPosition="above">assignment_ind</i></a></span>
+          <a routerLink="/message"><i class="material-icons" matTooltip="Send message" matTooltipPosition="above">chat_bubble</i></a>
         </mat-cell>
       </ng-container>
 

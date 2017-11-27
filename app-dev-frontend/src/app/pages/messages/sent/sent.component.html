@@ -20,7 +20,7 @@
       <ng-container matColumnDef="action">
         <mat-header-cell *matHeaderCellDef> Manage </mat-header-cell>
         <mat-cell *matCellDef="let row">
-          <a><i class="material-icons" matTooltip="View message" matTooltipPosition="above">view_headline</i></a>
+          <a (click)="viewMessage(row)"><i class="material-icons" matTooltip="View message" matTooltipPosition="above">message</i></a>
         </mat-cell>
       </ng-container>
 

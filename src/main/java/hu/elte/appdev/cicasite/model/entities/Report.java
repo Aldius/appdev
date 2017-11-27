@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Table(name = "REPORTS")
 public class Report extends BaseEntity {
 
-	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class) private User user;
+	@ManyToOne(targetEntity = User.class) private User user;
 
-	@ManyToOne(cascade = CascadeType.ALL, targetEntity = User.class) private User reported_by;
+	@ManyToOne(targetEntity = User.class) private User reported_by;
 
 	@Enumerated(EnumType.STRING) private ReportReason reason;
 

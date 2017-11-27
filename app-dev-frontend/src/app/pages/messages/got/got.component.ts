@@ -4,6 +4,7 @@ import {Message} from "../../../model/Message";
 import {AuthService} from "../../../services/auth.service";
 import {MessagesService} from "../../../services/messages.service";
 import {Router} from "@angular/router";
+import {MessageComponent} from "../../message/message.component";
 
 @Component({
   selector: 'app-got',
@@ -40,7 +41,7 @@ export class GotMessageComponent implements OnInit {
 
 
   viewMessage(message: Message): void {
-    this.dialog.open(null, {
+    this.dialog.open(MessageComponent, {
       data: message
     });
   }

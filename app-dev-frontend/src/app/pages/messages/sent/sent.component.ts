@@ -4,6 +4,7 @@ import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/mat
 import {Router} from "@angular/router";
 import {Message} from "../../../model/Message";
 import {MessagesService} from "../../../services/messages.service";
+import {MessageComponent} from "../../message/message.component";
 
 @Component({
   selector: 'app-sent',
@@ -40,7 +41,7 @@ export class SentMessageComponent implements OnInit {
 
 
   viewMessage(message: Message): void {
-    this.dialog.open(null, {
+    this.dialog.open(MessageComponent, {
       data: message
     });
   }

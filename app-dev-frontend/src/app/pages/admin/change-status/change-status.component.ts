@@ -28,6 +28,6 @@ export class ChangeStatusComponent {
       .subscribe(
         res => console.log(res)
       );
-    this.dialogRef.close();
+    this.dialogRef.close(true);
   }
 }

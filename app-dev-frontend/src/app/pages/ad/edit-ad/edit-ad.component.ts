@@ -11,14 +11,7 @@ import {FlashMessagesService} from "angular2-flash-messages";
   encapsulation: ViewEncapsulation.None
 })
 export class EditAdComponent{
-
-
   constructor(private adService: AdsService,public dialogRef: MatDialogRef<EditAdComponent>, @Inject(MAT_DIALOG_DATA) public data: Ad, private _flashMessagesService: FlashMessagesService) {  }
-
-  notBuying()
-  {
-    return this.data.adType != ADTYPE.WOULDBUY;
-  }
 
   submit()
   {
@@ -36,9 +29,7 @@ export class EditAdComponent{
 
   adValid()
   {
-    return (
-      (this.notBuying() ? this.data.picture_path != "" : true)
-      && this.data.description != ""
+    return (this.data.description != ""
       && this.data.title != ""
     )
   }

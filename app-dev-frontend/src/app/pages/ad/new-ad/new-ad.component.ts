@@ -16,7 +16,7 @@ export class NewAdComponent implements OnInit {
 
   newAdForm: FormGroup = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    picture_path: new FormControl('', [Validators.required]),
+    picture_path: new FormControl(''),
     adtype: new FormControl(''),
     description: new FormControl('', [Validators.required])
   });
